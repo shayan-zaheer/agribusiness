@@ -1,10 +1,13 @@
-import { useState } from "react";
 import { LuChevronFirst, LuChevronLast, LuMoreVertical } from "react-icons/lu";
+import { useDispatch, useSelector } from "react-redux";
+import { barActions } from "../store/barSlice";
 
 function Sidebar({ children }) {
-	const [open, setOpen] = useState(true);
+    const dispatch = useDispatch();
+	const open = useSelector(store => store.bar);
 	return (
-		<aside className="h-[93vh] w-[14rem]">
+        // 93vh
+		<aside className={`h-screen ${open ? "w-64" : "w-16"} transition-all`}> 
 			<nav className="h-full flex flex-col bg-[rgb(167,217,167)] border-r shadow-sm">
 				<div className="p-4 pb-2 flex justify-between items-center">
 					<img
@@ -15,7 +18,7 @@ function Sidebar({ children }) {
 						}`}
 					/>
 					<button
-						onClick={() => setOpen((prev) => !prev)}
+						onClick={() => dispatch(barActions.toggle())}
 						className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100"
 					>
 						{open ? <LuChevronFirst /> : <LuChevronLast />}

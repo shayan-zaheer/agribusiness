@@ -5,7 +5,7 @@ const barSlice = createSlice({
     initialState: true,
     reducers: {
         toggle: (state, action) => {
-            return !action.payload;
+            return !state;  
         }
     }
 });

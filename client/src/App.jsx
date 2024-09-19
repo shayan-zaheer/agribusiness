@@ -8,7 +8,7 @@ import SideItem from "./components/SideItem";
 function App() {
 	return (
         <>
-            <Header />
+            {/* <Header /> */}
             <div>
                 <Sidebar>
                     <SideItem text="Profile" icon={<CgProfile/>}/>
