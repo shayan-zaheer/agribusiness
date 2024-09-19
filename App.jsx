@@ -14,7 +14,7 @@ function App() {
         
           <h2 className="text-3xl font-bold text-black bg-[#6C926C] p-5 rounded-lg">VIEW ORDERS</h2>
         </header>
-        <div className="display:flex flex ">
+        <div className="flex flex-row flex-wrap ">
           <OrderCard />
           <OrderCard />
           <OrderCard />
