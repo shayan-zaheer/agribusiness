@@ -21,11 +21,15 @@ function App() {
             <Header />
             <div>
                 <Sidebar>
-                    <SideItem text={t("profile")} active={location.pathname === "/profile"} icon={<CgProfile/>}/>
+                    <Link to="/profile">
+                        <SideItem text={t("profile")} active={location.pathname === "/profile"} icon={<CgProfile/>}/>
+                    </Link>
                     <Link to="/orders">
                         <SideItem active={location.pathname === "/orders"} text={t("orders")} icon={<CiShoppingCart />}/>
                     </Link>
-                    <SideItem active={location.pathname === "/settings"} text={t("settings")} icon={<LuSettings />}/>
+                    <Link to="/settings">
+                        <SideItem active={location.pathname === "/settings"} text={t("settings")} icon={<LuSettings />}/>
+                    </Link>
                     <SideItem onClick={onChangeLang} text={i18n.language === "en" ? "English" : "Urdu"} icon={<LuLanguages />}/>
                 </Sidebar>
             </div>

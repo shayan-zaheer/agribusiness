@@ -9,13 +9,9 @@ function Sidebar({ children }) {
 		<aside className={`h-[93vh] ${open ? "w-64" : "w-16"} transition-all`}> 
 			<nav className="h-full flex flex-col bg-[rgb(167,217,167)] border-r shadow-sm">
 				<div className="p-4 pb-2 flex justify-between items-center">
-					<img
-						src="https://img.logoipsum.com/243.svg"
-						alt=""
-						className={`overflow-hidden transition-all ${
-							open ? "w-32" : "w-0"
-						}`}
-					/>
+                    <h2 className={`overflow-hidden transition-all text-lg font-bold text-green-700 shadow-md ${open ? "w-32" : "w-0"}`}>
+                        AGRIBUSINESS
+                    </h2>
 					<button
 						onClick={() => dispatch(barActions.toggle())}
 						className="p-1.5 rounded-lg bg-gray-50 hover:bg-gray-100"
