@@ -13,7 +13,12 @@ i18n.use(initReactI18next).init({
                 title: "AGRIBUSINESS",
                 profile: "Profile",
                 settings: "Settings",
-                orders: "Orders"
+                orders: "Orders",
+                "farmer name": "Farmer's Name",
+                variety: "Variety",
+                quantity: "Quantity",
+                "order date": "Order Date",
+                status: "Status"
             }
         },
         ur: {
@@ -21,7 +26,12 @@ i18n.use(initReactI18next).init({
                 title: "ایگری بزنس",
                 profile: "پروفائل",
                 settings: "ترتیبات",
-                orders: "آرڈرز"
+                orders: "آرڈرز",
+                "farmer name": "کسان کا نام",
+                variety: "قسم",
+                quantity: "مقدار",
+                "order date": "آرڈر کی تاریخ",
+                status: "درجہ"
             }
         }
     }
