@@ -1,16 +1,18 @@
 import { LuChevronFirst, LuChevronLast, LuMoreVertical } from "react-icons/lu";
 import { useDispatch, useSelector } from "react-redux";
 import { barActions } from "../store/barSlice";
+import { useTranslation } from "react-i18next";
 
 function Sidebar({ children }) {
+    const {t} = useTranslation();
     const dispatch = useDispatch();
 	const open = useSelector(store => store.bar);
 	return (
 		<aside className={`h-[93vh] ${open ? "w-64" : "w-16"} transition-all`}> 
 			<nav className="h-full flex flex-col bg-[rgb(167,217,167)] border-r shadow-sm">
 				<div className="p-4 pb-2 flex justify-between items-center">
-                    <h2 className={`overflow-hidden transition-all text-lg font-bold text-green-700 shadow-md ${open ? "w-32" : "w-0"}`}>
-                        AGRIBUSINESS
+                    <h2 className={`overflow-hidden transition-all text-lg font-bold text-green-700 drop-shadow-lg ${open ? "w-32" : "w-0"}`}>
+                        {t("title")}
                     </h2>
 					<button
 						onClick={() => dispatch(barActions.toggle())}

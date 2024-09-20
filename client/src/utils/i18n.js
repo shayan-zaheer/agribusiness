@@ -10,6 +10,7 @@ i18n.use(initReactI18next).init({
     resources: {
         en: {
             translation: {
+                title: "AGRIBUSINESS",
                 profile: "Profile",
                 settings: "Settings",
                 orders: "Orders"
@@ -17,6 +18,7 @@ i18n.use(initReactI18next).init({
         },
         ur: {
             translation: {
+                title: "ایگری بزنس",
                 profile: "پروفائل",
                 settings: "ترتیبات",
                 orders: "آرڈرز"
