@@ -6,19 +6,19 @@ function OrderItem(){
 		<div className="flex justify-between bg-[#6C926C] text-black p-4 rounded-md m-5">
 			<div>
 				<p> 
-					<strong>{t("farmer name")}</strong>
+					<strong>{t("farmer name")}:</strong>
 				</p>
 				<p>
-					<strong>{t("variety")}</strong>
+					<strong>{t("variety")}:</strong>
 				</p>
 				<p>
-					<strong>{t("quantity")}</strong>
+					<strong>{t("quantity")}:</strong>
 				</p>
 				<p>
-					<strong>{t("order date")}</strong>
+					<strong>{t("order date")}:</strong>
 				</p>
 				<p>
-					<strong>{t("status")}</strong>
+					<strong>{t("status")}:</strong>
 				</p>
 			</div>
 			<div>
