@@ -31,7 +31,7 @@ function App() {
                      </Link>
                      <SideItem onClick={onChangeLang} text={i18n.language === "en" ? "English" : "Urdu"} icon={<LuLanguages />}/>
                  </Sidebar>
-                 <div className="flex-1">
+                 <div className="flex-1 flex-col">
                     <Header />
                  </div>
                </div>
