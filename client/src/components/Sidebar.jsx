@@ -20,8 +20,8 @@ function Sidebar({ children }) {
 						alt=""
 					/>
 					<h2
-						className={`overflow-hidden transition-all text-lg font-bold text-green-700 drop-shadow-lg ${
-							open ? "w-32" : "w-0"
+						className={`overflow-hidden transition-all text-lg font-bold text-green-700 ${
+							open ? "w-32 drop-shadow-lg" : "w-0"
 						}`}
 					>
 						{t("title")}
