@@ -6,6 +6,7 @@ import store from './store/index.js'
 import App from './App.jsx'
 import "./utils/i18n.js";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import 'react-toastify/dist/ReactToastify.css';
 
 const router = createBrowserRouter([
     {
