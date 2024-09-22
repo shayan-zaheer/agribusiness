@@ -1,4 +1,4 @@
-import { LuLanguages, LuSettings } from "react-icons/lu";
+import { LuLanguages, LuMessageCircle, LuSettings } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import { CiShoppingCart } from "react-icons/ci";
 import Sidebar from "./Sidebar";
@@ -37,6 +37,13 @@ function Navbar() {
 					active={location.pathname === "/settings"}
 					text={t("settings")}
 					icon={<LuSettings />}
+				/>
+			</Link>
+			<Link to="/messages">
+				<SideItem
+					active={location.pathname === "/messages"}
+					text={t("messages")}
+					icon={<LuMessageCircle />}
 				/>
 			</Link>
 			<SideItem

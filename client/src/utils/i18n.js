@@ -19,7 +19,8 @@ i18n.use(initReactI18next).init({
                 quantity: "Quantity",
                 "order date": "Order Date",
                 status: "Status",
-                "message farmer": "Message Farmer"
+                "message farmer": "Message Farmer",
+                messages: "Messages"
             }
         },
         ur: {
@@ -33,7 +34,8 @@ i18n.use(initReactI18next).init({
                 quantity: "مقدار",
                 "order date": "آرڈر کی تاریخ",
                 status: "درجہ",
-                "message farmer": "کسان کو پیغام بھیجیں"
+                "message farmer": "کسان کو پیغام بھیجیں",
+                messages: "میسیج"
             }
         }
     }

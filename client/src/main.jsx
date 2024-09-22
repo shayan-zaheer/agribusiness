@@ -9,6 +9,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
 import Orders from './pages/Orders.jsx'
 import Profile from './pages/Profile.jsx'
+import Messages from './pages/Messages.jsx'
 
 const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ const router = createBrowserRouter([
             {
                 path: "/profile",
                 element: <Profile />
+            },
+            {
+                path: "/messages",
+                element: <Messages />
             }
         ]
     },
