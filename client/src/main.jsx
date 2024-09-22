@@ -8,6 +8,7 @@ import "./utils/i18n.js";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
 import Orders from './pages/Orders.jsx'
+import Profile from './pages/Profile.jsx'
 
 const router = createBrowserRouter([
     {
@@ -17,6 +18,10 @@ const router = createBrowserRouter([
             {
                 path: "/orders",
                 element: <Orders />
+            },
+            {
+                path: "/profile",
+                element: <Profile />
             }
         ]
     },
