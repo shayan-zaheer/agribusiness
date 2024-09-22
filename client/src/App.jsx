@@ -5,6 +5,8 @@ import { useRef } from "react";
 import { initSocket } from "./utils/socket";
 import { ToastContainer } from "react-toastify";
 import Navbar from "./components/Navbar";
+import Home from "./pages/Orders";
+import { Outlet } from "react-router-dom";
 
 function App() {
     const socketRef = useRef(null);
@@ -43,11 +45,7 @@ function App() {
                 <Navbar />
 				<div className="flex-1 flex-col">
 					<Header />
-					<div>
-						<OrderItem />
-						<OrderItem />
-						<OrderItem />
-					</div>
+					<Outlet />
 				</div>
 			</div>
 		</>

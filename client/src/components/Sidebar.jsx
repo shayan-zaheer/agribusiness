@@ -9,7 +9,7 @@ function Sidebar({ children }) {
 	const dispatch = useDispatch();
 	const open = useSelector((store) => store.bar);
 	return (
-		<aside className={`h-screen ${open ? "w-64" : "w-16"} transition-all`}>
+		<aside className={`h-screen ${open ? "w-64" : "w-16"} transition-all sticky top-0 left-0`}>
 			<nav className="h-full flex flex-col bg-[rgb(167,217,167)] border-r shadow-sm">
 				<div className="p-4 pb-2 flex justify-between items-center">
 					<img

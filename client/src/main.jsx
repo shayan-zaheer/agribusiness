@@ -7,24 +7,31 @@ import App from './App.jsx'
 import "./utils/i18n.js";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
+import Orders from './pages/Orders.jsx'
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
+        children: [
+            {
+                path: "/orders",
+                element: <Orders />
+            }
+        ]
     },
-    {
-        path: "/orders",
-        element: <App />
-    },
-    {
-        path: "/profile",
-        element: <App />
-    },
-    {
-        path: "/settings",
-        element: <App />
-    }
+    // {
+    //     path: "/orders",
+    //     element: <App />
+    // },
+    // {
+    //     path: "/profile",
+    //     element: <App />
+    // },
+    // {
+    //     path: "/settings",
+    //     element: <App />
+    // }
 ]);
 
 createRoot(document.getElementById('root')).render(
