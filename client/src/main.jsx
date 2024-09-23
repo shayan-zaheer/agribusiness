@@ -10,10 +10,26 @@ import 'react-toastify/dist/ReactToastify.css';
 import Orders from './pages/Orders.jsx'
 import Profile from './pages/Profile.jsx'
 import Messages from './pages/Messages.jsx'
+import WelcomeSection from './components/WelcomeSection.jsx'
+import UserSelection from './components/UserSelection.jsx'
+import InitialPage from './pages/InitialPage.jsx'
 
 const router = createBrowserRouter([
     {
         path: "/",
+        element: <InitialPage />,
+        children: [
+            {
+                path: "/",
+                element: <WelcomeSection />
+            },
+            {
+                path: "/users",
+                element: <UserSelection />
+            }
+        ]
+    },
+    {
         element: <App />,
         children: [
             {
@@ -29,7 +45,7 @@ const router = createBrowserRouter([
                 element: <Messages />
             }
         ]
-    },
+    }
     // {
     //     path: "/orders",
     //     element: <App />
