@@ -12,7 +12,7 @@ const io = new Server(server, {
     }
 });
 
-const onlineUsers = new Set();
+const onlineUser = new Set();
 
 io.on("connection", async (socket) => {
     console.log(`${socket.id} connected!`);
@@ -20,12 +20,12 @@ io.on("connection", async (socket) => {
     // const user = await getUserByToken(token); => to be made by me
 
     socket.join(user?._id);
-    onlineUsers.add(user?._id);
+    onlineUser.add(user?._id);
 
-    io.emit("onlineUser", Array.from(onlineUsers));
+    io.emit("onlineUser", Array.from(onlineUser));
 
     socket.on("disconnect", () => {
-        onlineUsers.delete(user?._id);
+        onlineUser.delete(user?._id);
         console.log(`${socket.id} disconnected!`)
     })
 });
