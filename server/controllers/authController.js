@@ -12,11 +12,8 @@ const signToken = id => {
 };
 
 exports.signup = asyncErrorHandler(async (request, response, next) => {
-    const newUser = await User.create(request.body);
 
-    // const token = jwt.sign({id: newUser._id}, process.env.SECRET_STR, {
-    //     expiresIn: process.env.LOGIN_EXPIRES
-    // });
+    const newUser = await User.create(request.body);
     const token = signToken(newUser._id);
 
     response.status(201).json({
@@ -60,11 +57,8 @@ exports.login = asyncErrorHandler(async (request, response, next) => {
 exports.protect = asyncErrorHandler(async (request, response, next) => {
     
     // 1. read the token and check if it exist
-    const testToken = request.headers.authorization;
-    let token;
-    if(testToken && testToken.startsWith("Bearer")){
-        token = testToken.split(" ")[1];
-    }
+    const token = request.cookies.jwt;
+    
     if(!token){
         next(new CustomError("You are not logged in!", 401));
     }

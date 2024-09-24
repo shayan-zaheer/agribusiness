@@ -38,9 +38,9 @@ const conversationSchema = new mongoose.Schema({
     timestamps: true
 });
 
-const messageModel = mongoose.model("Message", messageSchema);
-const conversationModel = mongoose.model("Conversation", conversationSchema);
+const Message = mongoose.model("Message", messageSchema);
+const Conversation = mongoose.model("Conversation", conversationSchema);
 
 module.exports = {
-    messageModel, conversationModel
+    Message, Conversation
 }
