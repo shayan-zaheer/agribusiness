@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 function BuyerLogin() {
 	return (
 		<form
@@ -28,8 +30,8 @@ function BuyerLogin() {
 						Password
 					</label>
 					<input
-						type="email"
-						name="email"
+						type="password"
+						name="password"
 						className="w-full rounded border border-gray-400 py-2 px-3"
 					></input>
 				</div>
