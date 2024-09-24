@@ -10,7 +10,7 @@ function HeaderHuz() {
 	}
 
   return (
-   <header className="text-center py-2 bg-gray-800 flex flex-row justify-center w-full">
+   <header className="text-center py-2 bg-gray-800 flex flex-row justify-center">
       <img className='w-12 pr-2' src="./nav-icon.png" alt="logo" />
         <h1 className="text-4xl w-64 font-bold text-white ">{t("title")}</h1>
 

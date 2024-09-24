@@ -4,10 +4,11 @@ import { Link } from "react-router-dom";
 function UserSelection() {
 	const { t } = useTranslation();
 	return (
+        // bg-[url('FarmBackground.jpg')] bg-field-image bg-cover bg-bottom
 		<div>
-			<div className="h-screen w-screen flex flex-col justify-between bg-field-image bg-cover bg-bottom text-white">
+			<div className="h-screen w-screen flex flex-col justify-between text-white">
 				<main className="flex flex-col items-center justify-center flex-grow">
-					<h2 className="text-5xl font-bold mb-36 -mt-60">
+					<h2 className="text-5xl font-bold mb-36 -mt-60 drop-shadow-lg">
 						{t("who")}
 					</h2>
 					<div className="space-y-6">

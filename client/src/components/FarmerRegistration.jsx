@@ -1,4 +1,5 @@
 import {useState} from "react";
+import { Link } from "react-router-dom";
 
 function FarmerRegistration() {
 	const [profilePicture, setProfilePicture] = useState("");
@@ -108,12 +109,12 @@ function FarmerRegistration() {
 					</button>
 					<div className="mt-4 text-center">
 						Already Have An Account?{" "}
-						<a
-							href="/citizenlogin"
+						<Link
+						    to="/login?user=farmer"
 							className="text-blue-600 underline"
 						>
 							Sign In
-						</a>
+						</Link>
 					</div>
 				</div>
 			</form>

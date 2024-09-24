@@ -14,11 +14,16 @@ import WelcomeSection from './components/WelcomeSection.jsx'
 import UserSelection from './components/UserSelection.jsx'
 import InitialPage from './pages/InitialPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
+import LoginPage from './pages/LoginPage.jsx'
 
 const router = createBrowserRouter([
     {
         path: "/register",
         element: <RegisterPage />
+    },
+    {
+        path: "/login",
+        element: <LoginPage />
     },
     {
         path: "/",

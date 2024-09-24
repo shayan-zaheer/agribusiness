@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function BuyerRegistration() {
     const [profilePicture, setProfilePicture] = useState("");
@@ -81,9 +82,9 @@ function BuyerRegistration() {
 				</button>
 				<div className="mt-4 text-center">
 					Already Have An Account?{" "}
-					<a href="/citizenlogin" className="text-blue-600 underline">
+					<Link to="/login?user=buyer" className="text-blue-600 underline">
 						Sign In
-					</a>
+					</Link>
 				</div>
 			</div>
 		</form>
