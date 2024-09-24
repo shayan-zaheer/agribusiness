@@ -13,8 +13,13 @@ import Messages from './pages/Messages.jsx'
 import WelcomeSection from './components/WelcomeSection.jsx'
 import UserSelection from './components/UserSelection.jsx'
 import InitialPage from './pages/InitialPage.jsx'
+import RegisterPage from './pages/RegisterPage.jsx'
 
 const router = createBrowserRouter([
+    {
+        path: "/register",
+        element: <RegisterPage />
+    },
     {
         path: "/",
         element: <InitialPage />,
