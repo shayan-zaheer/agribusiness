@@ -11,6 +11,13 @@ const signToken = id => {
     });
 };
 
+exports.hello = asyncErrorHandler(async(request, response, next) => {
+    response.status(200).json({
+        status: "real",
+        body: "good"
+    });
+})
+
 exports.signup = asyncErrorHandler(async (request, response, next) => {
 
     const newUser = await User.create(request.body);

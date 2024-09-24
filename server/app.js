@@ -1,35 +1,36 @@
-// require("dotenv").config({
-//     path: "./config.env"
-// });
-// const http = require("http");
-// const { Server } = require("socket.io");
-// const express = require("express");
-// const app = express();
-// const server = http.createServer(app);
-// const io = new Server(server, {
-//     cors: {
-//         origin: "http://localhost:5713",
-//         methods: ["GET", "POST", "PUT", "PATCH", "DELETE"],
-//         credentials: true
-//     }
-// })
-
-// io.on("connection", socket => {
-//     console.log(`Socket connected: ${socket.id}`);
-// })
-
-// const PORT = 8000 || process.env.PORT;
-
-// server.listen(PORT, () => {
-//     console.log(`Server is running on PORT ${PORT}!`);
-// })
-
 const express = require("express");
+require("dotenv").config({path: "./config.env"});
 const authRoutes = require("./routes/authRoutes");
-const app = express();
+const {app} = require("./socket/index");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const {server} = require("./socket/index");
+
+process.on("unhandledRejection", (error)=>{
+    console.log(error)
+    process.exit(1);
+});
+
+process.on("uncaughtException", (err) =>{
+    console.log("Uncaught exception occured! Shutting down!");
+    console.log(err);
+    process.exit(1);
+});
+
+mongoose.connect(process.env.MONGO_URL).then((conObj)=>{
+    console.log("DB Connection Successful!");
+});
+
+app.use(cors({
+    origin: "http://127.0.0.1:8000",
+    credentials: true
+}))
 
 app.use(express.json());
-
 app.use("/auth", authRoutes);
 
-module.exports = app;
+const PORT = process.env.PORT || 8000;
+
+server.listen(PORT, () => { 
+    console.log(`Server is started on port ${PORT}`);
+});
