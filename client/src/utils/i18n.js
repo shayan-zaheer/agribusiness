@@ -20,7 +20,13 @@ i18n.use(initReactI18next).init({
                 "order date": "Order Date",
                 status: "Status",
                 "message farmer": "Message Farmer",
-                messages: "Messages"
+                messages: "Messages",
+                "home description": `"Harvesting a Better Future Together"`,
+                "empowering farmers": "Empowering Farmers",
+                "connecting buyers": "Connecting Buyers",
+                "who": "Who Are You?",
+                farmer: "Farmer",
+                buyer: "Buyer"
             }
         },
         ur: {
@@ -35,7 +41,13 @@ i18n.use(initReactI18next).init({
                 "order date": "آرڈر کی تاریخ",
                 status: "درجہ",
                 "message farmer": "کسان کو پیغام بھیجیں",
-                messages: "میسیج"
+                messages: "میسیج",
+                "home description": "آئیے مل کر ایک بہتر مستقبل کی فصل کاٹیں",
+                "empowering farmers": 'کسانوں کو بااختیار بنانا',
+                "connecting buyers": "خریداروں سے جڑنا",
+                who: "آپ کون ہیں؟",
+                farmer: "کسان",
+                buyer: "خریدار"
             }
         }
     }
