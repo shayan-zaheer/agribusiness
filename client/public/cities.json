@@ -1,0 +1,149 @@
+{
+    "Pakistan": [
+      {
+        "name": "Karachi",
+        "province": "Sindh",
+        "latitude": 24.8607,
+        "longitude": 67.0011
+      },
+      {
+        "name": "Lahore",
+        "province": "Punjab",
+        "latitude": 31.5497,
+        "longitude": 74.3436
+      },
+      {
+        "name": "Islamabad",
+        "province": "Islamabad Capital Territory",
+        "latitude": 33.6844,
+        "longitude": 73.0479
+      },
+      {
+        "name": "Rawalpindi",
+        "province": "Punjab",
+        "latitude": 33.5651,
+        "longitude": 73.0169
+      },
+      {
+        "name": "Faisalabad",
+        "province": "Punjab",
+        "latitude": 31.4504,
+        "longitude": 73.1350
+      },
+      {
+        "name": "Peshawar",
+        "province": "Khyber Pakhtunkhwa",
+        "latitude": 34.0151,
+        "longitude": 71.5249
+      },
+      {
+        "name": "Quetta",
+        "province": "Balochistan",
+        "latitude": 30.1798,
+        "longitude": 66.9750
+      },
+      {
+        "name": "Multan",
+        "province": "Punjab",
+        "latitude": 30.1575,
+        "longitude": 71.5249
+      },
+      {
+        "name": "Hyderabad",
+        "province": "Sindh",
+        "latitude": 25.3960,
+        "longitude": 68.3578
+      },
+      {
+        "name": "Sialkot",
+        "province": "Punjab",
+        "latitude": 32.4945,
+        "longitude": 74.5229
+      },
+      {
+        "name": "Gujranwala",
+        "province": "Punjab",
+        "latitude": 32.1877,
+        "longitude": 74.1945
+      },
+      {
+        "name": "Sargodha",
+        "province": "Punjab",
+        "latitude": 32.0836,
+        "longitude": 72.6711
+      },
+      {
+        "name": "Bahawalpur",
+        "province": "Punjab",
+        "latitude": 29.3956,
+        "longitude": 71.6836
+      },
+      {
+        "name": "Sukkur",
+        "province": "Sindh",
+        "latitude": 27.7032,
+        "longitude": 68.8583
+      },
+      {
+        "name": "Mardan",
+        "province": "Khyber Pakhtunkhwa",
+        "latitude": 34.1951,
+        "longitude": 72.0451
+      },
+      {
+        "name": "Abbottabad",
+        "province": "Khyber Pakhtunkhwa",
+        "latitude": 34.1463,
+        "longitude": 73.2117
+      },
+      {
+        "name": "Sahiwal",
+        "province": "Punjab",
+        "latitude": 30.6777,
+        "longitude": 73.1068
+      },
+      {
+        "name": "Mingora",
+        "province": "Khyber Pakhtunkhwa",
+        "latitude": 34.7795,
+        "longitude": 72.3627
+      },
+      {
+        "name": "Dera Ghazi Khan",
+        "province": "Punjab",
+        "latitude": 30.0504,
+        "longitude": 70.6337
+      },
+      {
+        "name": "Nawabshah",
+        "province": "Sindh",
+        "latitude": 26.2456,
+        "longitude": 68.4095
+      },
+      {
+        "name": "Mirpur",
+        "province": "Azad Jammu and Kashmir",
+        "latitude": 33.1480,
+        "longitude": 73.7517
+      },
+      {
+        "name": "Kohat",
+        "province": "Khyber Pakhtunkhwa",
+        "latitude": 33.5869,
+        "longitude": 71.4425
+      },
+      {
+        "name": "Gilgit",
+        "province": "Gilgit-Baltistan",
+        "latitude": 35.8819,
+        "longitude": 74.4642
+      },
+      {
+        "name": "Skardu",
+        "province": "Gilgit-Baltistan",
+        "latitude": 35.2973,
+        "longitude": 75.6336
+      }
+    ]
+  }
+  
