@@ -25,10 +25,10 @@ function Navbar() {
 					icon={<CgProfile />}
 				/>
 			</Link>
-			<Link to="/orders">
+			<Link to="/products">
 				<SideItem
-					active={location.pathname === "/orders"}
-					text={t("orders")}
+					active={location.pathname === "/products"}
+					text={t("products")}
 					icon={<CiShoppingCart />}
 				/>
 			</Link>

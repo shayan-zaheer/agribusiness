@@ -7,7 +7,7 @@ import App from './App.jsx'
 import "./utils/i18n.js";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
-import Orders from './pages/Orders.jsx'
+import Products from './pages/Products.jsx'
 import Profile from './pages/Profile.jsx'
 import Messages from './pages/Messages.jsx'
 import WelcomeSection from './components/WelcomeSection.jsx'
@@ -44,8 +44,8 @@ const router = createBrowserRouter([
         element: <App />,
         children: [
             {
-                path: "/orders",
-                element: <Orders />
+                path: "/products",
+                element: <Products />
             },
             {
                 path: "/profile",

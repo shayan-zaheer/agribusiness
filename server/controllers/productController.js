@@ -10,3 +10,13 @@ exports.addProduct = asyncErrorHandler(async (request, response, next) => {
         }
     });
 });
+
+exports.showProducts = asyncErrorHandler(async (request, response, next) => {
+    const products = await Product.find({ seller: request.params.id }).populate('seller');
+	response.status(200).json({
+        status: "success",
+        data: {
+            products
+        }
+     });
+})
