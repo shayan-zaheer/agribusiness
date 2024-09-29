@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+	mobile: {
+		type: Number,
+		required: true
+	},
     role: {
         type: String,
         enum: ["seller", "buyer"],
@@ -81,7 +85,7 @@ userSchema.methods.comparePasswordInDB = async function (password, passwordDB) {
 
 userSchema.methods.isPasswordChanged = function (JWTTimestamp) {
     if (this.passwordChangedAt) {
-        const pswdChangedTimestamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10); // Convert to seconds
+        const pswdChangedTimestamp = parseInt(this.passwordChangedAt.getTime() / 1000, 10);
         return JWTTimestamp < pswdChangedTimestamp;
     }
     return false;
@@ -90,7 +94,7 @@ userSchema.methods.isPasswordChanged = function (JWTTimestamp) {
 userSchema.methods.createResetPasswordToken = function () {
     const resetToken = crypto.randomBytes(32).toString("hex");
     this.passwordResetToken = crypto.createHash("sha256").update(resetToken).digest("hex");
-    this.passwordResetTokenExpires = Date.now() + 10 * 60 * 1000; // Token expires in 10 minutes
+    this.passwordResetTokenExpires = Date.now() + 10 * 60 * 1000;
     return resetToken;
 };
 

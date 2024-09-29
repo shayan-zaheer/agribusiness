@@ -18,14 +18,10 @@ exports.hello = asyncErrorHandler(async(request, response, next) => {
     });
 })
 
-exports.signup = asyncErrorHandler(async (request, response, next) => {
-
+exports.register = asyncErrorHandler(async (request, response, next) => {
     const newUser = await User.create(request.body);
-    const token = signToken(newUser._id);
-
     response.status(201).json({
         status: "success",
-        token: token,
         data: {
             user: newUser
         }
