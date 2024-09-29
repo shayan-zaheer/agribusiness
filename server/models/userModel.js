@@ -33,23 +33,23 @@ const userSchema = new mongoose.Schema({
     },
     farmLocation: {
         type: String,
-        required: function () {
-            return this.role === "seller";
-        },
+        // required: function () {
+        //     return this.role === "seller";
+        // },
     },
     cropsProduced: {
         type: [String],
-        required: function () {
-            return this.role === "seller";
-        },
+        // required: function () {
+        //     return this.role === "seller";
+        // },
     },
     products: [
         {
             type: mongoose.Schema.Types.ObjectId,
             ref: "Product",
-            required: function () {
-                return this.role === "seller";
-            },
+            // required: function () {
+            //     return this.role === "seller";
+            // },
         },
     ],
     orders: [

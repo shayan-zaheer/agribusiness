@@ -1,7 +1,8 @@
-import { Form, Link, redirect } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function SellerLogin() {
+	const navigate = useNavigate();
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 		const formData = new FormData(event.target);
@@ -11,7 +12,7 @@ function SellerLogin() {
         } = Object.fromEntries(formData.entries());
         const role = new URLSearchParams(window.location.search).get("user");
         try {
-            await axios.post(
+            const result = await axios.post(
                 `${import.meta.env.VITE_BACKEND_URL}/auth/login`,
                 {
                     username,
@@ -22,7 +23,15 @@ function SellerLogin() {
 				}
             );
 
-            return redirect("/orders");
+			console.log(result);
+            const data = result.data;
+            
+            if (data.status === "success") {
+				localStorage.setItem("token", data.token);
+                navigate("/orders");
+            } else {
+                console.log(data);
+            }
         } catch (err) {
             return console.error(err);
         }
