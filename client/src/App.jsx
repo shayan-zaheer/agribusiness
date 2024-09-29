@@ -8,7 +8,7 @@ import io from "socket.io-client";
 
 function App() {
     useEffect(() => {
-        const socketConnection = io(import.meta.env.VITE_BACKEND_URL, {
+        const socketConnection = io("http://localhost:5173", {
             auth: {
                 token: localStorage.getItem("token")
             }

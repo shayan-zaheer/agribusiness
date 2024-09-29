@@ -17,7 +17,9 @@ function SellerLogin() {
                     username,
                     password,
                     role
-                }
+                }, {
+					withCredentials: true
+				}
             );
 
             return redirect("/orders");

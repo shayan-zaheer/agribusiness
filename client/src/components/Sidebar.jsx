@@ -3,8 +3,25 @@ import Avatar from "react-avatar";
 import { useDispatch, useSelector } from "react-redux";
 import { barActions } from "../store/barSlice";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import axios from "axios";
 
 function Sidebar({ children }) {
+	// const user = useSelector(store => store.user);
+
+    useEffect(() => {
+        async function updateProfile() {
+                const response = await axios.get(
+                    `${import.meta.env.VITE_BACKEND_URL}/users/userdata`,
+                    { withCredentials: true }
+                );
+				console.log(response);
+			}
+        updateProfile();
+    }, []);
+
+
+
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
 	const open = useSelector((store) => store.bar);
