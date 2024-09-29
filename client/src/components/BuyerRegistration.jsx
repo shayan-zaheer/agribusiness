@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Form, Link } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 function BuyerRegistration() {
+	const navigate = useNavigate();
     const [profilePicture, setProfilePicture] = useState("");
 
     const handleFileChange = async (event) => {
@@ -43,7 +44,7 @@ function BuyerRegistration() {
                 }
             );
 
-            return redirect("/login?user=buyer");
+            navigate("/login?user=buyer");
         } catch (err) {
             return console.error(err);
         }
@@ -78,7 +79,7 @@ function BuyerRegistration() {
                         htmlFor="username"
                         className="font-Poppins font-bold text-left mb-2"
                     >
-                        Email Address
+						Username
                     </label>
                     <input
                         type="text"

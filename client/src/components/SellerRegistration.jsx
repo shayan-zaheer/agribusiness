@@ -1,9 +1,10 @@
 import { useState } from "react";
-import { Form, Link, redirect } from "react-router-dom";
+import { Form, Link, redirect, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
 function SellerRegistration() {
+	const navigate = useNavigate();
     const [profilePicture, setProfilePicture] = useState("");
 
     const handleFileChange = async (event) => {
@@ -48,7 +49,7 @@ function SellerRegistration() {
                 }
             );
 
-            return redirect("/login?user=seller");
+            navigate("/login?user=seller");
         } catch (err) {
             return console.error(err);
         }
