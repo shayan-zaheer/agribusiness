@@ -15,6 +15,7 @@ import UserSelection from './components/UserSelection.jsx'
 import InitialPage from './pages/InitialPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
+import Settings from './pages/Settings.jsx'
 
 const router = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ const router = createBrowserRouter([
             {
                 path: "/messages",
                 element: <Messages />
+            },
+            {
+                path: "/settings",
+                element: <Settings />
             }
         ]
     }

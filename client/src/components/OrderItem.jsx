@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 function OrderItem() {
 	const { t } = useTranslation();
-	// bg-[#6c926c]
 	return (
 		<div className="flex justify-between bg-[rgb(167,217,167)] text-black p-4 rounded-md m-5">
 			<div>
