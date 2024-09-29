@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function FarmerLogin() {
+function SellerLogin() {
 	return (
 		<form
 			className="bg-[#D9D9D9] h-[90%] min-h-fit  rounded-lg w-[40%] md:w-[70%] sm:min-w-fit max-w-[600px] md:h-auto my-20 mx-auto flex flex-grow flex-col
@@ -44,7 +44,7 @@ function FarmerLogin() {
 				</button>
 				<div className="mt-4 text-center">
 					Don't Have An Account?{" "}
-					<Link to="/register?user=farmer" className="text-blue-600 underline">
+					<Link to="/register?user=seller" className="text-blue-600 underline">
 						Register
 					</Link>
 				</div>
@@ -53,4 +53,4 @@ function FarmerLogin() {
 	);
 }
 
-export default FarmerLogin;
+export default SellerLogin;

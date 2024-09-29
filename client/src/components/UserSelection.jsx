@@ -12,9 +12,9 @@ function UserSelection() {
 						{t("who")}
 					</h2>
 					<div className="space-y-6">
-						<Link to="/register?user=farmer" className="py-4">
+						<Link to="/register?user=seller" className="py-4">
 							<button className="w-96 py-4 font-semibold bg-green-950 text-2xl border-2 border-black rounded-lg hover:bg-green-800 transition">
-								{t("farmer")}
+								{t("seller")}
 							</button>
 						</Link>
 						<br />

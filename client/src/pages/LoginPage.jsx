@@ -1,5 +1,5 @@
 import BuyerLogin from "../components/BuyerLogin";
-import FarmerLogin from "../components/FarmerLogin";
+import SellerLogin from "../components/SellerLogin";
 import Footer from "../components/Footer";
 import HeaderHuz from "../components/HeaderHuz";
 
@@ -10,7 +10,7 @@ function LoginPage() {
   return (
     <>
         <HeaderHuz />
-        {user === "farmer" && <FarmerLogin />}
+        {user === "seller" && <SellerLogin />}
         {user === "buyer" && <BuyerLogin />}
         <Footer />
     </>

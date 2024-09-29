@@ -1,4 +1,4 @@
-import FarmerRegistration from "../components/FarmerRegistration";
+import SellerRegistration from "../components/SellerRegistration";
 import BuyerRegistration from "../components/BuyerRegistration";
 import HeaderHuz from "../components/HeaderHuz";
 import Footer from "../components/Footer";
@@ -9,7 +9,7 @@ function RegisterPage() {
 	return (
         <>
             <HeaderHuz />
-            {user === "farmer" && <FarmerRegistration />}
+            {user === "seller" && <SellerRegistration />}
             {user === "buyer" && <BuyerRegistration />}
             <Footer />
         </>

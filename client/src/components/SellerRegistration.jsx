@@ -1,7 +1,7 @@
 import {useState} from "react";
 import { Link } from "react-router-dom";
 
-function FarmerRegistration() {
+function SellerRegistration() {
 	const [profilePicture, setProfilePicture] = useState("");
 
 	const handleFileChange = async (event) => {
@@ -15,7 +15,7 @@ function FarmerRegistration() {
 			>
 				<div className="application min-h-fit h-3/4">
 					<h1 className="text-4xl font-bold text-center mb-10">
-						Create Farmer Account
+						Create Seller Account
 					</h1>
 					<div className="flex flex-col w-3/4">
 						<label
@@ -110,7 +110,7 @@ function FarmerRegistration() {
 					<div className="mt-4 text-center">
 						Already Have An Account?{" "}
 						<Link
-						    to="/login?user=farmer"
+						    to="/login?user=seller"
 							className="text-blue-600 underline"
 						>
 							Sign In
@@ -121,4 +121,4 @@ function FarmerRegistration() {
 	);
 }
 
-export default FarmerRegistration;
+export default SellerRegistration;

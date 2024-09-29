@@ -26,7 +26,8 @@ i18n.use(initReactI18next).init({
                 "connecting buyers": "Connecting Buyers",
                 "who": "Who Are You?",
                 farmer: "Farmer",
-                buyer: "Buyer"
+                buyer: "Buyer",
+                seller: "Seller"
             }
         },
         ur: {
@@ -47,7 +48,8 @@ i18n.use(initReactI18next).init({
                 "connecting buyers": "خریداروں سے جڑنا",
                 who: "آپ کون ہیں؟",
                 farmer: "کسان",
-                buyer: "خریدار"
+                buyer: "خریدار",
+                seller: "بیچنے والا"
             }
         }
     }
