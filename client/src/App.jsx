@@ -1,11 +1,23 @@
 
 import Header from "./components/Header";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { ToastContainer } from "react-toastify";
 import Navbar from "./components/Navbar";
 import { Outlet } from "react-router-dom";
+import io from "socket.io-client";
 
 function App() {
+    useEffect(() => {
+        const socketConnection = io("http://localhost:5173", {
+            auth: {
+                token: localStorage.getItem("token")
+            }
+        });
+        
+        return () => {
+            socketConnection.disconnect();
+        }
+    }, []);
     // const socketRef = useRef(null);
 
     // useEffect(() => {

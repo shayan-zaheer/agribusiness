@@ -1,7 +1,8 @@
 import BuyerLogin from "../components/BuyerLogin";
-import FarmerLogin from "../components/FarmerLogin";
+import SellerLogin from "../components/SellerLogin";
 import Footer from "../components/Footer";
 import HeaderHuz from "../components/HeaderHuz";
+import { ToastContainer } from "react-toastify";
 
 function LoginPage() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -10,7 +11,8 @@ function LoginPage() {
   return (
     <>
         <HeaderHuz />
-        {user === "farmer" && <FarmerLogin />}
+        <ToastContainer />
+        {user === "seller" && <SellerLogin />}
         {user === "buyer" && <BuyerLogin />}
         <Footer />
     </>

@@ -1,10 +1,12 @@
 const express = require("express");
 require("dotenv").config({path: "./config.env"});
 const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
 const {app} = require("./socket/index");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const {server} = require("./socket/index");
+const cookieParser = require('cookie-parser');
 
 process.on("unhandledRejection", (error)=>{
     console.log(error)
@@ -21,13 +23,20 @@ mongoose.connect(process.env.MONGO_URL).then((conObj)=>{
     console.log("DB Connection Successful!");
 });
 
+const allowedOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173']
+
 app.use(cors({
-    origin: "http://127.0.0.1:8000",
-    credentials: true
-}))
+    origin: allowedOrigins,
+    methods: ['GET', 'POST'],
+    credentials: true,
+}));
+
+
 
 app.use(express.json());
+app.use(cookieParser());
 app.use("/auth", authRoutes);
+app.use("/users", userRoutes);
 
 const PORT = process.env.PORT || 8000;
 

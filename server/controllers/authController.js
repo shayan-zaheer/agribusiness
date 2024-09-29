@@ -11,21 +11,10 @@ const signToken = id => {
     });
 };
 
-exports.hello = asyncErrorHandler(async(request, response, next) => {
-    response.status(200).json({
-        status: "real",
-        body: "good"
-    });
-})
-
-exports.signup = asyncErrorHandler(async (request, response, next) => {
-
+exports.register = asyncErrorHandler(async (request, response, next) => {
     const newUser = await User.create(request.body);
-    const token = signToken(newUser._id);
-
     response.status(201).json({
         status: "success",
-        token: token,
         data: {
             user: newUser
         }
@@ -33,13 +22,13 @@ exports.signup = asyncErrorHandler(async (request, response, next) => {
 });
 
 exports.login = asyncErrorHandler(async (request, response, next) => {
-    const {email, password} = request.body;
-    if(!email || !password){
-        const error = new CustomError("Please provide email ID & password for login!", 400);
+    const {username, password} = request.body;
+    if(!username || !password){
+        const error = new CustomError("Please provide username & password for login!", 400);
         return next(error);
     }
 
-    const user = await User.findOne({email: email}).select("+password");
+    const user = await User.findOne({username: username}).select("+password");
 
     if(!user || !(await user.comparePasswordInDB(password, user.password))){
         const error = new CustomError("Incorrect email or password!", 400);
@@ -48,12 +37,13 @@ exports.login = asyncErrorHandler(async (request, response, next) => {
 
     const token = signToken(user._id);
 
-    const options = {
-        maxAge: process.env.LOGIN_EXPIRES,
-        httpOnly: true
-    }
-    
-    response.cookie("jwt", token, options);
+    response.cookie("token", token, {
+        httpOnly: true,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        sameSite: "None",
+        secure: true,
+        path: "/",
+    });
 
     response.status(200).json({
         status: "success",

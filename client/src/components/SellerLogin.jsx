@@ -1,8 +1,35 @@
-import { Link } from "react-router-dom";
+import { Form, Link, redirect } from "react-router-dom";
+import axios from "axios";
 
-function FarmerLogin() {
+function SellerLogin() {
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		const formData = new FormData(event.target);
+		const {
+            username,
+            password
+        } = Object.fromEntries(formData.entries());
+        const role = new URLSearchParams(window.location.search).get("user");
+        try {
+            await axios.post(
+                `${import.meta.env.VITE_BACKEND_URL}/auth/login`,
+                {
+                    username,
+                    password,
+                    role
+                }, {
+					withCredentials: true
+				}
+            );
+
+            return redirect("/orders");
+        } catch (err) {
+            return console.error(err);
+        }
+    };
+
 	return (
-		<form
+		<Form onSubmit={handleSubmit}
 			className="bg-[#D9D9D9] h-[90%] min-h-fit  rounded-lg w-[40%] md:w-[70%] sm:min-w-fit max-w-[600px] md:h-auto my-20 mx-auto flex flex-grow flex-col
  justify-around items-center p-2 opacity-75"
 		>
@@ -44,13 +71,13 @@ function FarmerLogin() {
 				</button>
 				<div className="mt-4 text-center">
 					Don't Have An Account?{" "}
-					<Link to="/register?user=farmer" className="text-blue-600 underline">
+					<Link to="/register?user=seller" className="text-blue-600 underline">
 						Register
 					</Link>
 				</div>
 			</div>
-		</form>
+		</Form>
 	);
 }
 
-export default FarmerLogin;
+export default SellerLogin;

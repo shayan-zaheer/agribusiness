@@ -1,9 +1,9 @@
 const express = require("express");
-const authController = require("../controllers/authController");
+const userController = require("../controllers/userController");
 const router = express.Router();
 
-router.route("/register").post(authController.register);
-router.route("/login").post(authController.login);
+router.route("/userdata").get(userController.getUser);
+// router.route("/login").post(authController.login);
 // router.route("/logout").post(authController.logout);
 // router.route("/update-password").patch(authController.updatePassword);
 // router.route("/forgot-password").patch(authController.forgotPassword);

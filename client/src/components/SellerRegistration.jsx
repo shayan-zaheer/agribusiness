@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { Form, Link, useNavigate } from "react-router-dom";
+import { Form, Link, redirect, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function BuyerRegistration() {
+function SellerRegistration() {
 	const navigate = useNavigate();
     const [profilePicture, setProfilePicture] = useState("");
 
@@ -20,20 +20,25 @@ function BuyerRegistration() {
             name,
             username,
             password,
-            mobile
+            mobile,
+            farmName,
+            farmLocation,
+            cropsProduced,
         } = Object.fromEntries(formData.entries());
-		const role = new URLSearchParams(window.location.search).get("user");
-
+        const role = new URLSearchParams(window.location.search).get("user");
         try {
             await axios.post(
                 `${import.meta.env.VITE_BACKEND_URL}/auth/register`,
                 {
-					name,
-					username,
-					password,
-					mobile,
-					role
-				}
+                    name,
+                    username,
+                    password,
+                    role,
+                    mobile,
+                    farmName,
+                    farmLocation,
+                    cropsProduced,
+                }
             );
 
             toast.success(
@@ -44,7 +49,7 @@ function BuyerRegistration() {
                 }
             );
 
-            navigate("/login?user=buyer");
+            navigate("/login?user=seller");
         } catch (err) {
             return console.error(err);
         }
@@ -58,7 +63,7 @@ function BuyerRegistration() {
         >
             <div className="application min-h-fit h-3/4">
                 <h1 className="text-4xl font-bold text-center mb-10">
-                    Create Buyer Account
+                    Create Seller Account
                 </h1>
                 <div className="flex flex-col w-3/4">
                     <label
@@ -79,7 +84,7 @@ function BuyerRegistration() {
                         htmlFor="username"
                         className="font-Poppins font-bold text-left mb-2"
                     >
-						Username
+                        Username
                     </label>
                     <input
                         type="text"
@@ -116,6 +121,48 @@ function BuyerRegistration() {
                     ></input>
                 </div>
 
+                <div className="flex flex-col w-3/4">
+                    <label
+                        htmlFor="farmName"
+                        className="font-Poppins font-bold text-left mb-2"
+                    >
+                        Farm Name
+                    </label>
+                    <input
+                        type="text"
+                        name="farmName"
+                        className="w-full rounded border border-gray-400 py-2 px-3"
+                    ></input>
+                </div>
+
+                <div className="flex flex-col w-3/4">
+                    <label
+                        htmlFor="farmLocation"
+                        className="font-Poppins font-bold text-left mb-2"
+                    >
+                        Farm Location
+                    </label>
+                    <input
+                        type="text"
+                        name="farmLocation"
+                        className="w-full rounded border border-gray-400 py-2 px-3"
+                    ></input>
+                </div>
+
+                <div className="flex flex-col w-3/4">
+                    <label
+                        htmlFor="cropsProduced"
+                        className="font-Poppins font-bold text-left mb-2"
+                    >
+                        Crops produced
+                    </label>
+                    <input
+                        type="text"
+                        name="cropsProduced"
+                        className="w-full rounded border border-gray-400 py-2 px-3"
+                    ></input>
+                </div>
+
                 <button
                     type="submit"
                     className="bg-[#6E9794] hover:bg-[#70aca8] text-white font-bold py-2 px-4 rounded w-1/2 md:w-1/2 mt-4"
@@ -125,7 +172,7 @@ function BuyerRegistration() {
                 <div className="mt-4 text-center">
                     Already Have An Account?{" "}
                     <Link
-                        to="/login?user=buyer"
+                        to="/login?user=seller"
                         className="text-blue-600 underline"
                     >
                         Sign In
@@ -136,4 +183,4 @@ function BuyerRegistration() {
     );
 }
 
-export default BuyerRegistration;
+export default SellerRegistration;

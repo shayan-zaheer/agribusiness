@@ -3,8 +3,26 @@ import Avatar from "react-avatar";
 import { useDispatch, useSelector } from "react-redux";
 import { barActions } from "../store/barSlice";
 import { useTranslation } from "react-i18next";
+import { useEffect } from "react";
+import axios from "axios";
+import { userActions } from "../store/userSlice";
 
 function Sidebar({ children }) {
+	const user = useSelector(store => store.user);
+
+    useEffect(() => {
+        async function updateProfile() {
+                const response = await axios.get(
+                    `${import.meta.env.VITE_BACKEND_URL}/users/userdata`,
+                    { withCredentials: true }
+                );
+				dispatch(userActions.userProfile(response.data.user));
+			}
+        updateProfile();
+    }, []);
+
+
+
 	const { t } = useTranslation();
 	const dispatch = useDispatch();
 	const open = useSelector((store) => store.bar);
@@ -38,7 +56,7 @@ function Sidebar({ children }) {
 
 				<div className="border-t flex p-3">
 					<Avatar
-						name="Shayan Ali"
+						name={user.name}
 						size={40}
 						className="rounded-md"
 					/>
@@ -48,9 +66,9 @@ function Sidebar({ children }) {
 						}`}
 					>
 						<div className="leading-4">
-							<h4 className="font-semibold">Shayan Ali</h4>
+							<h4 className="font-semibold">{user.name}</h4>
 							<span className="text-xs text-gray-600">
-								shayanali1337
+								{user.username}
 							</span>
 						</div>
 						<LuMoreVertical />
