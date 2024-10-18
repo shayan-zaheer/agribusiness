@@ -1,4 +1,4 @@
-function textareaField({ label, name }) {
+function TextareaField({ label, name }) {
     return (
         <div className="space-y-1">
             <label className="text-gray-600 font-medium">{label}</label>
@@ -13,4 +13,4 @@ function textareaField({ label, name }) {
     );
 }
 
-export default textareaField;
+export default TextareaField;

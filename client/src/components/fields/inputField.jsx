@@ -1,4 +1,4 @@
-function inputField({ label, name, type = "text" }) {
+function InputField({ label, name, type = "text" }) {
     return (
         <div className="space-y-1">
             <label className="text-gray-600 font-medium">{label}</label>
@@ -13,4 +13,4 @@ function inputField({ label, name, type = "text" }) {
     );
 }
 
-export default inputField;
+export default InputField;
