@@ -16,6 +16,7 @@ import InitialPage from './pages/InitialPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import Settings from './pages/Settings.jsx'
+import AddProduct from './components/AddProduct.jsx'
 
 const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
             {
                 path: "/settings",
                 element: <Settings />
+            },
+            {
+                path: "/settings/add-product",
+                element: <AddProduct />
             }
         ]
     }

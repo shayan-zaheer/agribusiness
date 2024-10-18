@@ -34,6 +34,7 @@ app.use(cors({
 
 app.use(express.json());
 app.use(cookieParser());
+
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/products", productRoutes);
