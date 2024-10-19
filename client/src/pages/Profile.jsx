@@ -1,72 +1,13 @@
-// import { useEffect, useState } from "react";
-// import { getNearestCity } from "../utils/haversine";
-
-// function Profile() {
-//   const [locationMessage, setLocationMessage] = useState("");
-//   const [nearestCity, setNearestCity] = useState(null);
-
-//   useEffect(() => {
-//     if (navigator.geolocation) {
-//       navigator.geolocation.getCurrentPosition(success, showError);
-//     } else {
-//       setLocationMessage("Geolocation is not supported by this browser.");
-//     }
-//   }, []);
-
-//   async function success(position) {
-//     const latitude = position.coords.latitude;
-//     const longitude = position.coords.longitude;
-//     console.log(latitude, longitude)
-    
-//     const nearest = await getNearestCity(latitude, longitude);
-//     if (nearest) {
-//       setNearestCity(nearest);
-//     } else {
-//       setLocationMessage("No city found nearby.");
-//     }
-//   }
-
-//   function showError(error) {
-//     switch (error.code) {
-//       case error.PERMISSION_DENIED:
-//         setLocationMessage("User denied the request for Geolocation.");
-//         break;
-//       case error.POSITION_UNAVAILABLE:
-//         setLocationMessage("Location information is unavailable.");
-//         break;
-//       case error.TIMEOUT:
-//         setLocationMessage("The request to get user location timed out.");
-//         break;
-//       case error.UNKNOWN_ERROR:
-//         setLocationMessage("An unknown error occurred.");
-//         break;
-//       default:
-//         setLocationMessage("An error occurred.");
-//     }
-//   }
-
-//   return (
-//     <div>
-//       <h1>Profile</h1>
-//       <p>{locationMessage}</p>
-//       {nearestCity && (
-//         <p>City: {nearestCity.name}, {nearestCity.province}</p>
-//       )}
-//     </div>
-//   );
-// }
-
-// export default Profile;
-
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import axios from "axios";
 import Avatar from "react-avatar";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { userActions } from "../store/userSlice";
 
 function Profile() {
-    const [user, setUser] = useState(null);
-    const currentUser = useSelector((store) => store.user);
+    const dispatch = useDispatch();
+    const user = useSelector((store) => store.user);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -75,10 +16,8 @@ function Profile() {
                     `${import.meta.env.VITE_BACKEND_URL}/users/userdata`,
                     { withCredentials: true }
                 );
-                console.log(response);
-                setUser(response.data.user);
-                console.log(user);
-            } catch (error) {
+                dispatch(userActions.userProfile(response?.data?.user));
+                } catch (error) {
                 console.error("Error fetching user data:", error);
             }
         };
@@ -92,7 +31,7 @@ function Profile() {
             <h1 className="text-3xl font-bold text-green-800 mb-8">Profile</h1>
             <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-lg">
                 <div className="flex items-center mb-6">
-                    <Avatar name={user.name} size={100} className="rounded-full" />
+                    <Avatar name={user?.name} size={100} className="rounded-full" />
                     <div className="ml-4">
                         <h2 className="text-xl font-semibold text-green-700">{user.name}</h2>
                         <p className="text-gray-600">{user.username}</p>
@@ -101,13 +40,12 @@ function Profile() {
 
                 <div className="border-t border-gray-200 pt-4">
                     <h3 className="text-lg font-bold text-green-700 mb-2">Contact Information</h3>
-                    <p className="text-gray-600">Email: {user.email}</p>
-                    <p className="text-gray-600">Phone: {user.phone || "N/A"}</p>
+                    <p className="text-gray-600">Phone: {user?.mobile}</p>
                 </div>
 
                 <div className="border-t border-gray-200 pt-4 mt-4">
                     <h3 className="text-lg font-bold text-green-700 mb-2">About Me</h3>
-                    <p className="text-gray-600">{user.bio || "No bio available."}</p>
+                    <p className="text-gray-600">Location: {user?.city}</p>
                 </div>
 
                 <div className="flex justify-end mt-6">
