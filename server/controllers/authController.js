@@ -29,6 +29,7 @@ exports.login = asyncErrorHandler(async (request, response, next) => {
     }
 
     const user = await User.findOne({username: username}).select("+password");
+    request.user = user;
 
     if(!user || !(await user.comparePasswordInDB(password, user.password))){
         const error = new CustomError("Incorrect email or password!", 400);
@@ -54,7 +55,7 @@ exports.login = asyncErrorHandler(async (request, response, next) => {
 exports.protect = asyncErrorHandler(async (request, response, next) => {
     
     // 1. read the token and check if it exist
-    const token = request.cookies.jwt;
+    const token = request.cookies.token;
     
     if(!token){
         next(new CustomError("You are not logged in!", 401));
@@ -78,7 +79,6 @@ exports.protect = asyncErrorHandler(async (request, response, next) => {
         return next(error);
     }
     
-    //5. allow user to access route
     request.user = user;
     next();
 });

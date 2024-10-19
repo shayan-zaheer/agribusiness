@@ -12,13 +12,16 @@ function UpdateProduct() {
         const fetchProduct = async () => {
             try {
                 const result = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products/${id}`);
+
+                console.log(result.data);
+
                 setProductData(result.data);
             } catch (error) {
                 console.error(error);
             }
         };
 
-        // fetchProduct();
+        fetchProduct();
     }, [id]);
 
     const handleSubmit = async (event) => {

@@ -1,76 +1,9 @@
-import { useState } from "react";
 import { Form, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function BuyerRegistration() {
+function BuyerRegistration({cities, selectedCity, setSelectedCity}) {
 	const navigate = useNavigate();
-    const [profilePicture, setProfilePicture] = useState("");
-
-    const [selectedCity, setSelectedCity] = useState('');
-
-    const handleCityChange = (event) => {
-        setSelectedCity(event.target.value);
-    };
-
-    const handleFileChange = async (event) => {
-        const picture = await converttobase64(event.target.files[0]);
-        setProfilePicture(picture);
-    };
-
-    const citiesOfPakistan = [
-        "Abbottabad",
-        "Ahmedpur East",
-        "Ajk",
-        "Alipur",
-        "Arifwala",
-        "Attock",
-        "Bahawalnagar",
-        "Bahawalpur",
-        "Bannu",
-        "Batagram",
-        "Burewala",
-        "Chakwal",
-        "Chaman",
-        "Chiniot",
-        "Dera Ghazi Khan",
-        "Dera Ismail Khan",
-        "Faisalabad",
-        "Gujranwala",
-        "Gujrat",
-        "Hyderabad",
-        "Islamabad",
-        "Jhang",
-        "Jhelum",
-        "Karachi",
-        "Kasur",
-        "Khairpur",
-        "Lahore",
-        "Larkana",
-        "Mardan",
-        "Matiari",
-        "Mingora",
-        "Mirpur",
-        "Multan",
-        "Nawabshah",
-        "Nowshera",
-        "Okara",
-        "Peshawar",
-        "Quetta",
-        "Rahim Yar Khan",
-        "Rawalpindi",
-        "Sahiwal",
-        "Sargodha",
-        "Sialkot",
-        "Skardu",
-        "Sukkur",
-        "Tando Allahyar",
-        "Tando Adam",
-        "Taxila",
-        "Wah Cantt",
-        "Wazirabad",
-        "Zhob"
-    ];    
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -185,12 +118,12 @@ function BuyerRegistration() {
             <select
                 name="city"
                 value={selectedCity}
-                onChange={handleCityChange}
+                onChange={(event) => setSelectedCity(event.target.value)}
                 required
                 className="w-full rounded border border-gray-400 py-2 px-3"
             >
                 <option value="">Select a city</option>
-                {citiesOfPakistan.map((city, index) => (
+                {cities.map((city, index) => (
                     <option key={index} value={city}>
                         {city}
                     </option>

@@ -1,16 +1,9 @@
-import { useState } from "react";
-import { Form, Link, redirect, useNavigate } from "react-router-dom";
+import { Form, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function SellerRegistration() {
+function SellerRegistration({cities, selectedCity, setSelectedCity}) {
 	const navigate = useNavigate();
-    const [profilePicture, setProfilePicture] = useState("");
-
-    const handleFileChange = async (event) => {
-        const picture = await converttobase64(event.target.files[0]);
-        setProfilePicture(picture);
-    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -21,9 +14,10 @@ function SellerRegistration() {
             username,
             password,
             mobile,
-            farmName,
-            farmLocation,
-            cropsProduced,
+            city
+            // farmName,
+            // farmLocation,
+            // cropsProduced,
         } = Object.fromEntries(formData.entries());
         const role = new URLSearchParams(window.location.search).get("user");
         try {
@@ -35,9 +29,10 @@ function SellerRegistration() {
                     password,
                     role,
                     mobile,
-                    farmName,
-                    farmLocation,
-                    cropsProduced,
+                    city
+                    // farmName,
+                    // farmLocation,
+                    // cropsProduced,
                 }
             );
 
@@ -122,6 +117,26 @@ function SellerRegistration() {
                 </div>
 
                 <div className="flex flex-col w-3/4">
+            <label htmlFor="city" className="font-Poppins font-bold text-left mb-2">
+                Select City
+            </label>
+            <select
+                name="city"
+                value={selectedCity}
+                onChange={(event) => setSelectedCity(event.target.value)}
+                required
+                className="w-full rounded border border-gray-400 py-2 px-3"
+            >
+                <option value="">Select a city</option>
+                {cities.map((city, index) => (
+                    <option key={index} value={city}>
+                        {city}
+                    </option>
+                ))}
+            </select>
+        </div>
+{/* 
+                <div className="flex flex-col w-3/4">
                     <label
                         htmlFor="farmName"
                         className="font-Poppins font-bold text-left mb-2"
@@ -161,7 +176,7 @@ function SellerRegistration() {
                         name="cropsProduced"
                         className="w-full rounded border border-gray-400 py-2 px-3"
                     ></input>
-                </div>
+                </div> */}
 
                 <button
                     type="submit"

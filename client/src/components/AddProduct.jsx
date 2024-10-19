@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
+import {toast} from "react-toastify";
 import { Form, useNavigate } from "react-router-dom";
 
 function AddProduct() {
@@ -9,14 +10,15 @@ function AddProduct() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
-        const { name, description, price, quantityAvailable, category } = Object.fromEntries(formData.entries());
+        const { name, description, price, quantityAvailable, category, image } = Object.fromEntries(formData.entries());
 
         try {
             setLoading(true);
-            const result = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/products/add`,  { name, description, price, quantityAvailable, category });
+            const result = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/products/add`,  { name, description, price, quantityAvailable, category }, {withCredentials: true});
             setLoading(false);
 
             if (result.data.status === "success") {
+                toast.success("geo");
                 navigate("/settings");
             }
         } catch (error) {
@@ -63,6 +65,15 @@ function AddProduct() {
                     className="block w-full p-3 border border-gray-300 rounded mb-4"
                     required
                 />
+
+					<input
+						name="image"
+						type="file"
+                        className="block w-full p-3 border border-gray-300 rounded mb-4"
+						accept="image/*"
+                        required
+					/>
+
                 <button type="submit" className="bg-green-600 text-white py-2 px-4 rounded">
                     Add Product
                 </button>

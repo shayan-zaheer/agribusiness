@@ -27,9 +27,9 @@ const userSchema = new mongoose.Schema({
     },
     farmName: {
         type: String,
-        required: function () {
-            return this.role === "seller";
-        },
+        // required: function () {
+        //     return this.role === "seller";
+        // },
     },
     farmLocation: {
         type: String,
