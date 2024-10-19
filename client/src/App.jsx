@@ -2,7 +2,6 @@
 import Header from "./components/Header";
 import { useEffect, useRef } from "react";
 import { ToastContainer } from "react-toastify";
-import Navbar from "./components/Navbar";
 import { Outlet } from "react-router-dom";
 import io from "socket.io-client";
 

@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import { FaBox, FaEdit, FaTrash, FaUserEdit, FaLock } from "react-icons/fa";
+
 function SettingsNav() {
     return (
         <>
@@ -6,7 +9,7 @@ function SettingsNav() {
             </h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <Link
+                <Link   
                     to="/settings/add-product"
                     className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
                 >

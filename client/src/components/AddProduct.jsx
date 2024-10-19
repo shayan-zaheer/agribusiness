@@ -1,8 +1,6 @@
 import { useState } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import InputField from "./fields/inputField";
-import TextareaField from "./fields/textareaField";
+import { Form, useNavigate } from "react-router-dom";
 
 function AddProduct() {
     const [loading, setLoading] = useState(false);
@@ -28,25 +26,47 @@ function AddProduct() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-            <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
-                <h2 className="text-2xl font-bold mb-6 text-gray-700 text-center">Add Product</h2>
-                <form onSubmit={handleSubmit} className="space-y-6">
-
-                    <InputField label="Product Name" name="name" />
-                    <TextareaField label="Description" name="description" />
-                    <InputField label="Price" name="price" type="number" />
-                    <InputField label="Quantity Available" name="quantityAvailable" type="number" />
-                    <InputField label="Category" name="category" />
-                    
-                    <button
-                        type="submit"
-                        className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md shadow-sm"
-                    >
-                        {loading ? "Adding Product..." : "Add Product"}
-                    </button>
-                </form>
-            </div>
+        <div className="p-8 bg-white rounded-lg shadow-md">
+            <h1 className="text-2xl font-bold mb-6">Add Product</h1>
+            <Form onSubmit={handleSubmit}>
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Product Name"
+                    className="block w-full p-3 border border-gray-300 rounded mb-4"
+                    required
+                />
+                <textarea
+                    name="description"
+                    placeholder="Product Description"
+                    className="block w-full p-3 border border-gray-300 rounded mb-4"
+                    required
+                />
+                <input
+                    type="number"
+                    name="price"
+                    placeholder="Price"
+                    className="block w-full p-3 border border-gray-300 rounded mb-4"
+                    required
+                />
+                <input
+                    type="number"
+                    name="quantityAvailable"
+                    placeholder="Quantity Available"
+                    className="block w-full p-3 border border-gray-300 rounded mb-4"
+                    required
+                />
+                <input
+                    type="text"
+                    name="category"
+                    placeholder="Category"
+                    className="block w-full p-3 border border-gray-300 rounded mb-4"
+                    required
+                />
+                <button type="submit" className="bg-green-600 text-white py-2 px-4 rounded">
+                    Add Product
+                </button>
+            </Form>
         </div>
     );
 }

@@ -21,6 +21,7 @@ import DeleteProduct from './components/DeleteProduct.jsx'
 import UpdateProduct from './components/UpdateProduct.jsx'
 import ChangePassword from './components/ChangePassword.jsx'
 import ChangeUsername from './components/ChangeUsername.jsx'
+import SettingsNav from './components/SettingsNav.jsx'
 
 const router = createBrowserRouter([
     {
@@ -62,28 +63,34 @@ const router = createBrowserRouter([
             },
             {
                 path: "/settings",
-                element: <Settings />
+                element: <Settings />,
+                children: [
+                    {
+                        path: "/settings",
+                        element: <SettingsNav />
+                    },{
+                        path: "/settings/add-product",
+                        element: <AddProduct />
+                    },
+                    {
+                        path: "/settings/delete-product",
+                        element: <DeleteProduct />
+                    },
+                    {
+                        path: "/settings/update-product",
+                        element: <UpdateProduct />
+                    },
+                    {
+                        path: "/settings/change-password",
+                        element: <ChangePassword />
+                    },
+                    {
+                        path: "/settings/change-username",
+                        element: <ChangeUsername />
+                    },
+                ]
             },
-            {
-                path: "/settings/add-product",
-                element: <AddProduct />
-            },
-            {
-                path: "/settings/delete-product",
-                element: <DeleteProduct />
-            },
-            {
-                path: "/settings/update-product",
-                element: <UpdateProduct />
-            },
-            {
-                path: "/settings/change-password",
-                element: <ChangePassword />
-            },
-            {
-                path: "/settings/change-username",
-                element: <ChangeUsername />
-            },
+            
         ]
     }
     // {
