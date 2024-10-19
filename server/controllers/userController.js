@@ -15,7 +15,7 @@ exports.getUser = asyncErrorHandler(async (request, response) => {
         const decoded = jwt.verify(token, process.env.SECRET_STR);
 
         const userId = decoded.id; 
-        const user = await User.findById(userId).select('name username'); 
+        const user = await User.findById(userId).select('name username mobile city'); 
 
         if (!user) {
             return response.status(404).json({

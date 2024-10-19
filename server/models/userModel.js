@@ -62,6 +62,10 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    city: {
+        type: String,
+        required: true
+    }
 });
 
 userSchema.pre("save", async function (next) {

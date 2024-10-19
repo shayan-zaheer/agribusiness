@@ -75,7 +75,9 @@ function Profile() {
                     `${import.meta.env.VITE_BACKEND_URL}/users/userdata`,
                     { withCredentials: true }
                 );
+                console.log(response);
                 setUser(response.data.user);
+                console.log(user);
             } catch (error) {
                 console.error("Error fetching user data:", error);
             }

@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { ToastContainer } from "react-toastify";
 import { Outlet } from "react-router-dom";
 import io from "socket.io-client";
+import Footer from "./components/Footer";
 
 function App() {
     useEffect(() => {
@@ -49,13 +50,9 @@ function App() {
 	return (
 		<>
             <ToastContainer />
-			<div className="flex">
-                {/* <Navbar /> */}
-				<div className="flex-1 flex-col">
-					<Header />
-					<Outlet />
-				</div>
-			</div>
+			<Header />
+			<Outlet />
+			<Footer />
 		</>
 	);
 }
