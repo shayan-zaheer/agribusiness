@@ -51,7 +51,7 @@ function App() {
 		<>
             <ToastContainer />
 			<div className="flex">
-                <Navbar />
+                {/* <Navbar /> */}
 				<div className="flex-1 flex-col">
 					<Header />
 					<Outlet />
