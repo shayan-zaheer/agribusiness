@@ -28,7 +28,7 @@ function SellerLogin() {
             
             if (data.status === "success") {
 				localStorage.setItem("token", data.token);
-                navigate("/orders");
+                navigate("/profile");
             } else {
                 console.log(data);
             }

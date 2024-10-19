@@ -25,9 +25,9 @@ function Profile() {
     }, []);
 
     if (!user) return <div>Loading...</div>;
-
+ //  bg-[rgb(55,97,55)]
     return (
-        <div className="min-h-screen bg-[rgb(55,97,55)] flex flex-col items-center">
+        <div className="min-h-screen bg-gray-600 flex flex-col items-center">
             <h1 className="text-3xl font-bold text-green-800 mb-8">Profile</h1>
             <div className="bg-white p-6 rounded-lg shadow-lg w-11/12 max-w-lg">
                 <div className="flex items-center mb-6">
