@@ -1,28 +1,25 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Form, useNavigate, useParams } from "react-router-dom";
+import { Form, useNavigate, useOutletContext } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 function UpdateProduct() {
     const [loading, setLoading] = useState(false);
-    const [productData, setProductData] = useState(null);
-    const { id } = useParams();
+    const products = useSelector(store => store.product.products);
+    const [selectedProduct, setSelectedProduct] = useState(null);
+    const {_id: id} = useSelector(store => store.user);
+    const [role] = useOutletContext();
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const result = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products/${id}`);
+    console.log(products);
+    console.log(id);
 
-                console.log(result.data);
+    const handleProductSelect = (event) => {
+        const productId = event.target.value;
+        const product = products.find(prod => prod._id === productId);
+        setSelectedProduct(product);
+    };
 
-                setProductData(result.data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
-
-        fetchProduct();
-    }, [id]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -31,7 +28,13 @@ function UpdateProduct() {
 
         try {
             setLoading(true);
-            const result = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/products/update/${id}`, { name, description, price, quantityAvailable, category });
+            const result = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/products/update/${selectedProduct._id}`, {
+                name,
+                description,
+                price,
+                quantityAvailable,
+                category
+            });
             setLoading(false);
 
             if (result.data.status === "success") {
@@ -43,56 +46,70 @@ function UpdateProduct() {
         }
     };
 
-    // if (!productData) return <div>Loading...</div>;
-
     return (
-        <div className="p-8 bg-white rounded-lg shadow-md">
-            <h1 className="text-2xl font-bold mb-6">Update Product</h1>
-            <Form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="name"
-                    defaultValue={productData.name}
-                    placeholder="Product Name"
-                    className="block w-full p-3 border border-gray-300 rounded mb-4"
-                    required
-                />
-                <textarea
-                    name="description"
-                    defaultValue={productData.description}
-                    placeholder="Product Description"
-                    className="block w-full p-3 border border-gray-300 rounded mb-4"
-                    required
-                />
-                <input
-                    type="number"
-                    name="price"
-                    defaultValue={productData.price}
-                    placeholder="Price"
-                    className="block w-full p-3 border border-gray-300 rounded mb-4"
-                    required
-                />
-                <input
-                    type="number"
-                    name="quantityAvailable"
-                    defaultValue={productData.quantityAvailable}
-                    placeholder="Quantity Available"
-                    className="block w-full p-3 border border-gray-300 rounded mb-4"
-                    required
-                />
-                <input
-                    type="text"
-                    name="category"
-                    defaultValue={productData.category}
-                    placeholder="Category"
-                    className="block w-full p-3 border border-gray-300 rounded mb-4"
-                    required
-                />
-                <button type="submit" className="bg-blue-600 text-white py-2 px-4 rounded">
-                    Update Product
-                </button>
-            </Form>
-        </div>
+        <>
+            {role === "seller" && (
+                <div className="p-8 bg-white rounded-lg shadow-md">
+                    <h1 className="text-2xl font-bold mb-6">Update Product</h1>
+
+                    <select onChange={handleProductSelect} className="block w-full p-3 border border-gray-300 rounded mb-4">
+                        <option value="">Select a product</option>
+                        {products.map(product => (
+                            <option key={product._id} value={product._id}>
+                                {product.name}
+                            </option>
+                        ))}
+                    </select>
+
+                    {selectedProduct && (
+                        <Form onSubmit={handleSubmit}>
+                            <input
+                                type="text"
+                                name="name"
+                                defaultValue={selectedProduct.name}
+                                placeholder="Product Name"
+                                className="block w-full p-3 border border-gray-300 rounded mb-4"
+                                required
+                            />
+                            <textarea
+                                name="description"
+                                defaultValue={selectedProduct.description}
+                                placeholder="Product Description"
+                                className="block w-full p-3 border border-gray-300 rounded mb-4"
+                                required
+                            />
+                            <input
+                                type="number"
+                                name="price"
+                                defaultValue={selectedProduct.price}
+                                placeholder="Price"
+                                className="block w-full p-3 border border-gray-300 rounded mb-4"
+                                required
+                            />
+                            <input
+                                type="number"
+                                name="quantityAvailable"
+                                defaultValue={selectedProduct.quantityAvailable}
+                                placeholder="Quantity Available"
+                                className="block w-full p-3 border border-gray-300 rounded mb-4"
+                                required
+                            />
+                            <input
+                                type="text"
+                                name="category"
+                                defaultValue={selectedProduct.category}
+                                placeholder="Category"
+                                className="block w-full p-3 border border-gray-300 rounded mb-4"
+                                required
+                            />
+                            <button type="submit" className="bg-blue-600 text-white py-2 px-4 rounded">
+                                Update Product
+                            </button>
+                        </Form>
+                    )}
+                </div>
+            )}
+        </>
     );
 }
 

@@ -17,6 +17,23 @@ exports.addProduct = asyncErrorHandler(async (request, response, next) => {
     });
 });
 
+exports.updateProduct = asyncErrorHandler(async (request, response, next) => {
+    const { id } = request.params;
+    const { name, description, price, quantityAvailable, category } = request.body;
+
+    const updatedProduct = await Product.findByIdAndUpdate(
+        id,
+        { name, description, price, quantityAvailable, category },
+        { new: true, runValidators: true }
+    );
+
+    if (!updatedProduct) {
+        return res.status(404).json({ status: 'error', message: 'Product not found' });
+    }
+
+    response.status(200).json({ status: 'success', data: { product: updatedProduct } });
+})
+
 exports.showAllProducts = asyncErrorHandler(async (request, response, next) => {
     const products = await Product.find().populate('seller'); // Get all products with seller details
     
