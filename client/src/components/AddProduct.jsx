@@ -5,22 +5,32 @@ import { Form, useNavigate } from "react-router-dom";
 
 function AddProduct() {
     const [loading, setLoading] = useState(false);
-    const [file, setFile] = useState(null); // State to store the selected file
     const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const formData = new FormData(event.target); // Use FormData to handle multipart form data
-        const { name, description, price, quantityAvailable, category } = Object.fromEntries(formData.entries());
-
-        // Manually append the file to the FormData object
-        formData.append("image", file);
+        const formData = new FormData(event.target);
+        const { 
+            name,
+            description,
+            price,
+            quantityAvailable,
+            category,
+            image
+        } = Object.fromEntries(formData.entries());
 
         try {
             setLoading(true);
             const result = await axios.post(
                 `${import.meta.env.VITE_BACKEND_URL}/products/add`,
-                formData,
+                {
+                    name,
+                    description,
+                    price,
+                    quantityAvailable,
+                    category,
+                    image
+                },
                 {
                     withCredentials: true,
                     headers: {
@@ -39,11 +49,6 @@ function AddProduct() {
             console.error(error);
             toast.error("Failed to add product");
         }
-    };
-
-    const handleFileChange = (event) => {
-        const selectedFile = event.target.files[0];
-        setFile(selectedFile);
     };
 
     return (
@@ -86,13 +91,12 @@ function AddProduct() {
                 />
 
                 <label className="cursor-pointer block w-full p-3 border border-gray-300 rounded mb-4">
-                    Open File
+                    Add Image
                     <input
                         name="image"
                         type="file"
                         className="hidden"
                         accept="image/*"
-                        onChange={handleFileChange}
                         required
                     />
                 </label>

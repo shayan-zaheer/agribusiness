@@ -22,7 +22,7 @@ function Profile() {
             }
         };
         fetchUserData();
-    }, []);
+    }, [dispatch]);
 
     if (!user) return <div>Loading...</div>;
  //  bg-[rgb(55,97,55)]

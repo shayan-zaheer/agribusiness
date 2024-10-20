@@ -2,10 +2,12 @@ const asyncErrorHandler = require("../utils/asyncErrorHandler");
 const Product = require("../models/productModel");
 
 exports.addProduct = asyncErrorHandler(async (request, response, next) => {
-    console.log(request.body);
-    console.log(request.user);
-    const newProduct = await Product.create({...request.body, seller: request?.user?._id});
+    const { name, description, price, quantityAvailable, category } = request.body;
+    const image = request.file ? `/images/${request.file.filename}` : '';
+    const seller = request?.user?._id;
 
+    const newProduct = new Product({ name, description, price, quantityAvailable, category, image, seller });
+    await newProduct.save();
 
     response.status(201).json({
         status: "success",
@@ -15,11 +17,19 @@ exports.addProduct = asyncErrorHandler(async (request, response, next) => {
     });
 });
 
-// exports.getProductByUserId = asyncErrorHandler(async (_request, response, next) => {
-//     const products = await Product.find({})
-// })
+exports.showAllProducts = asyncErrorHandler(async (request, response, next) => {
+    const products = await Product.find().populate('seller'); // Get all products with seller details
+    
+    response.status(200).json({
+        status: "success",
+        data: {
+            products
+        }
+    });
+});
 
-exports.showProducts = asyncErrorHandler(async (request, response, next) => {
+
+exports.showOwnProducts = asyncErrorHandler(async (request, response, next) => {
     const products = await Product.find({ seller: request.params.id }).populate('seller');
 	response.status(200).json({
         status: "success",

@@ -27,7 +27,7 @@ function ProductItem({ product }) {
 				<Link to={`/products/${product._id}`}>
 					<strong>{t("view product")}</strong>
 				</Link>
-				<img className="w-32 h-32" src="./product.png" alt={product.name} />
+				<img className="w-32 h-32" src={product.image} alt={product.name} />
 			</div>
 		</div>
 	);
