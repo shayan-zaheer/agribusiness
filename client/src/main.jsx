@@ -58,7 +58,7 @@ const router = createBrowserRouter([
                 element: <Profile />
             },
             {
-                path: "/messages",
+                path: "/messages/:id",
                 element: <Messages />
             },
             {

@@ -3,6 +3,7 @@ require("dotenv").config({path: "./config.env"});
 const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
+const conversationRoutes = require('./routes/conversationRoutes');
 const {app} = require("./socket/index");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -38,6 +39,7 @@ app.use(cookieParser());
 app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/products", productRoutes);
+app.use('/api', conversationRoutes);
 
 const PORT = process.env.PORT || 8000;
 

@@ -31,3 +31,20 @@ exports.getUser = asyncErrorHandler(async (request, response) => {
             user
         });
 });
+
+exports.getUserById = asyncErrorHandler(async (request, response, next) => {
+    const {id} = request.params;
+    const user = await User.findById(id).select('name email role username mobile city'); 
+
+        if (!user) {
+            return response.status(404).json({
+                status: "fail",
+                message: "User not found"
+            });
+        }
+
+        response.status(200).json({
+            status: "success",
+            user
+        });
+});

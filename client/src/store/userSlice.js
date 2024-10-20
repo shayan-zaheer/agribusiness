@@ -9,6 +9,12 @@ const userSlice = createSlice({
         },
         clearUser: (state, action) => {
             state.user = null;
+        },
+        setOnlineUser: (state, action) => {
+            state.onlineUser = action.payload;
+        },
+        setSocketConnection: (state, action) => {
+            state.socketConnection = action.payload;
         }
     }
 });
