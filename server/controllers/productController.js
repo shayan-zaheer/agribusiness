@@ -32,6 +32,17 @@ exports.updateProduct = asyncErrorHandler(async (request, response, next) => {
     }
 
     response.status(200).json({ status: 'success', data: { product: updatedProduct } });
+});
+
+exports.deleteProduct = asyncErrorHandler(async (request, response, next) => {
+    const {id} = request.params;
+
+    const deletedProduct = await Product.findByIdAndDelete(id);
+
+    if (!deletedProduct) {
+        return response.status(404).json({ status: "error", message: "Product not found" });
+    }
+    response.status(200).json({ status: "success", message: "Product deleted successfully" });
 })
 
 exports.showAllProducts = asyncErrorHandler(async (request, response, next) => {

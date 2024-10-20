@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import axios from "axios";
 import { Form, useNavigate, useOutletContext } from "react-router-dom";
 import { useSelector } from "react-redux";
+import FetchProducts from "./FetchProducts";
 
 function UpdateProduct() {
     const [loading, setLoading] = useState(false);
@@ -19,7 +20,6 @@ function UpdateProduct() {
         const product = products.find(prod => prod._id === productId);
         setSelectedProduct(product);
     };
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -48,6 +48,7 @@ function UpdateProduct() {
 
     return (
         <>
+            <FetchProducts />
             {role === "seller" && (
                 <div className="p-8 bg-white rounded-lg shadow-md">
                     <h1 className="text-2xl font-bold mb-6">Update Product</h1>
