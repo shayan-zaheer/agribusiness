@@ -6,6 +6,9 @@ const userSlice = createSlice({
     reducers: {
         userProfile: (state, action) => {
             return action.payload;
+        },
+        clearUser: (state, action) => {
+            state.user = null;
         }
     }
 });

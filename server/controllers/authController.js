@@ -52,6 +52,19 @@ exports.login = asyncErrorHandler(async (request, response, next) => {
     });
 });
 
+exports.logout = asyncErrorHandler(async (request, response, next) => {
+    response.clearCookie("token", {
+        httpOnly: true,
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+        sameSite: "None",
+        secure: true,
+    });
+
+    response.status(200).json({
+        status: "success",
+    });
+});
+
 exports.protect = asyncErrorHandler(async (request, response, next) => {
     
     // 1. read the token and check if it exist

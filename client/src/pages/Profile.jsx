@@ -1,28 +1,11 @@
 import { useEffect } from "react";
 import axios from "axios";
 import Avatar from "react-avatar";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { userActions } from "../store/userSlice";
 
 function Profile() {
-    const dispatch = useDispatch();
-    const user = useSelector((store) => store.user);
-
-    useEffect(() => {
-        const fetchUserData = async () => {
-            try {
-                const response = await axios.get(
-                    `${import.meta.env.VITE_BACKEND_URL}/users/userdata`,
-                    { withCredentials: true }
-                );
-                dispatch(userActions.userProfile(response?.data?.user));
-                } catch (error) {
-                console.error("Error fetching user data:", error);
-            }
-        };
-        fetchUserData();
-    }, [dispatch]);
+    const user = useSelector((store) => store.user);  
 
     if (!user) return <div>Loading...</div>;
  //  bg-[rgb(55,97,55)]

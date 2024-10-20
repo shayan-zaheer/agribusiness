@@ -1,16 +1,49 @@
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LuLanguages } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import { CiShoppingCart } from "react-icons/ci";
 import { useTranslation } from "react-i18next";
 import { LuMessageCircle, LuSettings } from "react-icons/lu";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useDispatch } from "react-redux";
+import { userActions } from "../store/userSlice";
+import axios from "axios";
 
 function Header() {
 	const { i18n, t } = useTranslation();
+	const navigate = useNavigate();
 	const location = useLocation();
+	const [username, setUsername] = useState("");
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
+	const dispatch = useDispatch();
+
+	async function logout() {
+		try {
+			const response = await axios.post("http://localhost:8000/auth/logout", {}, { withCredentials: true });
+			console.log(response);
+			navigate("/");
+		} catch (error) {
+			console.error("Logout failed", error);
+		}
+	}
+
+	useEffect(() => {
+        const fetchUserData = async () => {
+            try {
+                const response = await axios.get(
+                    `${import.meta.env.VITE_BACKEND_URL}/users/userdata`,
+                    { withCredentials: true }
+                );
+				const userData = response?.data?.user;
+                dispatch(userActions.userProfile(userData));
+				setUsername(userData?.username);
+                } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        };
+        fetchUserData();
+    }, [dispatch]);
 
 	function onChangeLang() {
 		const currentLang = i18n.language === "en" ? "ur" : "en";
@@ -36,7 +69,7 @@ function Header() {
 					</button>
 				</div>
 
-				<nav className="hidden lg:flex space-x-4">
+				<nav className="hidden lg:flex space-x-4 items-center">
 					<Link to="/profile">
 						<SideItem
 							text={t("profile")}
@@ -70,6 +103,13 @@ function Header() {
 						text={i18n.language === "en" ? "English" : "Urdu"}
 						icon={<LuLanguages />}
 					/>
+
+					<div className="flex items-center space-x-2">
+						<span className="text-white font-medium">{username}</span>
+						<button onClick={() => logout()} className="text-red-400 ml-4">
+							{t("logout")}
+						</button>
+					</div>
 				</nav>
 
 				{isMenuOpen && (
@@ -108,6 +148,16 @@ function Header() {
 								text={i18n.language === "en" ? "English" : "Urdu"}
 								icon={<LuLanguages />}
 							/>
+
+							<div className="flex items-center p-4">
+								<span className="ml-2 text-white">{username}</span>
+							</div>
+							<button
+								onClick={() => { logout(); setIsMenuOpen(false); }}
+								className="text-red-400 p-2"
+							>
+								{t("logout")}
+							</button>
 						</div>
 					</nav>
 				)}
