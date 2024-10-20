@@ -3,30 +3,29 @@ const { Message, Conversation } = require('../models/conversationModel');
 
 const router = express.Router();
 
-// Create a new conversation or add a message to an existing conversation
 router.post('/conversations', async (req, res) => {
     const { sender, receiver, text, imageUrl } = req.body;
 
     try {
-        // Create a new message
         const newMessage = await Message.create({ text, imageUrl, sender, receiver });
 
-        // Check if a conversation already exists
         const conversation = await Conversation.findOneAndUpdate(
             {
-                sender: sender,
-                receiver: receiver,
+                $or: [
+                    { sender, receiver },
+                    { sender: receiver, receiver: sender }
+                ],
             },
             {
                 $push: { messages: newMessage._id },
             },
-            { new: true, upsert: true } // Create if not exists
+            { new: true, upsert: true }
         );
 
         res.status(200).json({ conversation, message: newMessage });
     } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: "Error creating conversation." });
+        console.error("Error creating conversation:", error);
+        res.status(500).json({ message: "Internal Server Error" });
     }
 });
 

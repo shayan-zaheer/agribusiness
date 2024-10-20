@@ -22,6 +22,7 @@ import UpdateProduct from './components/UpdateProduct.jsx'
 // import ChangePassword from './components/ChangePassword.jsx'
 // import ChangeUsername from './components/ChangeUsername.jsx'
 import SettingsNav from './components/SettingsNav.jsx'
+import MessagePage from './pages/MessagePage.jsx'
 
 const router = createBrowserRouter([
     {
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
             {
                 path: "/profile",
                 element: <Profile />
+            },
+            {
+                path: "/messages",
+                element: <MessagePage />
             },
             {
                 path: "/messages/:id",
