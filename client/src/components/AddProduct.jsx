@@ -1,11 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { Form, useNavigate } from "react-router-dom";
+import { Form, useNavigate, useOutletContext } from "react-router-dom";
 
 function AddProduct() {
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
+    const [role] = useOutletContext();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -52,60 +53,65 @@ function AddProduct() {
     };
 
     return (
-        <div className="p-8 bg-white rounded-lg shadow-md">
-            <h1 className="text-2xl font-bold mb-6">Add Product</h1>
-            <Form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    name="name"
-                    placeholder="Product Name"
-                    className="block w-full p-3 border border-gray-300 rounded mb-4"
-                    required
-                />
-                <textarea
-                    name="description"
-                    placeholder="Product Description"
-                    className="block w-full p-3 border border-gray-300 rounded mb-4"
-                    required
-                />
-                <input
-                    type="number"
-                    name="price"
-                    placeholder="Price"
-                    className="block w-full p-3 border border-gray-300 rounded mb-4"
-                    required
-                />
-                <input
-                    type="number"
-                    name="quantityAvailable"
-                    placeholder="Quantity Available"
-                    className="block w-full p-3 border border-gray-300 rounded mb-4"
-                    required
-                />
-                <input
-                    type="text"
-                    name="category"
-                    placeholder="Category"
-                    className="block w-full p-3 border border-gray-300 rounded mb-4"
-                    required
-                />
-
-                <label className="cursor-pointer block w-full p-3 border border-gray-300 rounded mb-4">
-                    Add Image
+        <>
+            {role === "seller" && (
+                <div className="p-8 bg-white rounded-lg shadow-md">
+                <h1 className="text-2xl font-bold mb-6">Add Product</h1>
+                <Form onSubmit={handleSubmit}>
                     <input
-                        name="image"
-                        type="file"
-                        className="hidden"
-                        accept="image/*"
+                        type="text"
+                        name="name"
+                        placeholder="Product Name"
+                        className="block w-full p-3 border border-gray-300 rounded mb-4"
                         required
                     />
-                </label>
-
-                <button type="submit" className="bg-green-600 text-white py-2 px-4 rounded" disabled={loading}>
-                    {loading ? "Adding Product..." : "Add Product"}
-                </button>
-            </Form>
-        </div>
+                    <textarea
+                        name="description"
+                        placeholder="Product Description"
+                        className="block w-full p-3 border border-gray-300 rounded mb-4"
+                        required
+                    />
+                    <input
+                        type="number"
+                        name="price"
+                        placeholder="Price"
+                        className="block w-full p-3 border border-gray-300 rounded mb-4"
+                        required
+                    />
+                    <input
+                        type="number"
+                        name="quantityAvailable"
+                        placeholder="Quantity Available"
+                        className="block w-full p-3 border border-gray-300 rounded mb-4"
+                        required
+                    />
+                    <input
+                        type="text"
+                        name="category"
+                        placeholder="Category"
+                        className="block w-full p-3 border border-gray-300 rounded mb-4"
+                        required
+                    />
+    
+                    <label className="cursor-pointer block w-full p-3 border border-gray-300 rounded mb-4">
+                        Add Image
+                        <input
+                            name="image"
+                            type="file"
+                            className="hidden"
+                            accept="image/*"
+                            required
+                        />
+                    </label>
+    
+                    <button type="submit" className="bg-green-600 text-white py-2 px-4 rounded" disabled={loading}>
+                        {loading ? "Adding Product..." : "Add Product"}
+                    </button>
+                </Form>
+            </div>
+            )}
+        </>
+        
     );
 }
 

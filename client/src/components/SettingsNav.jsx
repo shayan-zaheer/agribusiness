@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 import { FaBox, FaEdit, FaTrash, FaUserEdit, FaLock } from "react-icons/fa";
 
 function SettingsNav() {
+    const [role] = useOutletContext();
+
     return (
         <>
             <h1 className="text-4xl font-bold text-white mb-8">
@@ -9,7 +11,9 @@ function SettingsNav() {
             </h1>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <Link   
+                {role === "seller" && (
+                    <>
+                        <Link   
                     to="/settings/add-product"
                     className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
                 >
@@ -53,6 +57,9 @@ function SettingsNav() {
                         Remove a product from inventory.
                     </p>
                 </Link>
+
+                    </>
+                )}
 
                 <Link
                     to="/settings/change-username"

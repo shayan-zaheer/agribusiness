@@ -52,7 +52,7 @@ function Settings() {
 
 
             <main className="w-3/4 p-10">
-                <Outlet />
+                <Outlet context={[role]}/>
             </main>
         </div>
     );
