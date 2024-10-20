@@ -5,7 +5,25 @@ export default {
       "./src/**/*.{js,ts,jsx,tsx}",
     ],
     theme: {
+      screens: {
+        'sm': { 'min': '250px', 'max': '650px' },
+        // => @media (min-width: 250px) and (max-width: 599px) { ... }
+        
+        'md': { 'min': '651px', 'max': '1023px' },
+        // => @media (min-width: 600px) and (max-width: 1023px) { ... }
+
+        'lg': { 'min': '1024px', 'max': '1279px' },
+        // => @media (min-width: 1024px) and (max-width: 1279px) { ... }
+
+        'xl': { 'min': '1280px', 'max': '1535px' },
+        // => @media (min-width: 1280px) and (max-width: 1535px) { ... }
+
+        '2xl': { 'min': '1536px' },
+        // => @media (min-width: 1536px) { ... }
+        
+      },
       extend: {},
     },
     plugins: [],
   }
+
