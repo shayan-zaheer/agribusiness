@@ -1,43 +1,37 @@
-import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import ProductItem from "../components/ProductItem";
 import SearchBar from "../components/SearchBar";
-import axios from "axios";
+import FetchProducts from "../components/FetchProducts";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 function Products() {
-	const [products, setProducts] = useState([]);
+    const products = useSelector(store => store.product.products);
+    const { role } = useSelector(store => store.user);
 
-	useEffect(() => {
-		const fetchProducts = async () => {
-			try {
-				const res = await axios.get(
-                    `${import.meta.env.VITE_BACKEND_URL}/users/userdata`,
-                    { withCredentials: true }
-                );
-				const id = res.data.user._id;
+    return (
+        <>
+            {role === "seller" && (
+                <h1 className="text-center font-bold text-white">Your Products</h1>
+            )}
 
-				const response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products/${id}`);
+            {role === "buyer" && (
+                <h1 className="text-center font-bold text-white">Search for Products</h1>
+            )}
 
-				console.log(response);
+            <div>
+                <SearchBar />
+                {products.length > 0 ? (
+                    products.map((product) => (
+                        <ProductItem key={product._id} product={product} />
+                    ))
+                ) : (
+                    <LoadingSpinner />
+                )}
+            </div>
 
-				setProducts(response.data.data.products);
-			} catch (error) {
-				console.error("Error fetching products:", error);
-			}
-		};
-
-		fetchProducts();
-	}, []);
-
-	console.log(products);
-
-	return (
-		<div>
-			<SearchBar />
-			{products ? ( products.map((product) => (
-				<ProductItem key={product._id} product={product} />
-			))) : <p>Empty</p>}
-		</div>
-	);
+            <FetchProducts />
+        </>
+    );
 }
 
 export default Products;

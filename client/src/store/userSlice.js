@@ -6,6 +6,15 @@ const userSlice = createSlice({
     reducers: {
         userProfile: (state, action) => {
             return action.payload;
+        },
+        clearUser: (state, action) => {
+            state.user = null;
+        },
+        setOnlineUser: (state, action) => {
+            state.onlineUser = action.payload;
+        },
+        setSocketConnection: (state, action) => {
+            state.socketConnection = action.payload;
         }
     }
 });

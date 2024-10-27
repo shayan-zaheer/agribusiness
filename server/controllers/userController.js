@@ -15,7 +15,7 @@ exports.getUser = asyncErrorHandler(async (request, response) => {
         const decoded = jwt.verify(token, process.env.SECRET_STR);
 
         const userId = decoded.id; 
-        const user = await User.findById(userId).select('name username'); 
+        const user = await User.findById(userId).select('name email role username mobile city'); 
 
         if (!user) {
             return response.status(404).json({
@@ -24,7 +24,24 @@ exports.getUser = asyncErrorHandler(async (request, response) => {
             });
         }
 
-        request.user = decoded;
+        // request.user = decoded;
+
+        response.status(200).json({
+            status: "success",
+            user
+        });
+});
+
+exports.getUserById = asyncErrorHandler(async (request, response, next) => {
+    const {id} = request.params;
+    const user = await User.findById(id).select('name email role username mobile city'); 
+
+        if (!user) {
+            return response.status(404).json({
+                status: "fail",
+                message: "User not found"
+            });
+        }
 
         response.status(200).json({
             status: "success",

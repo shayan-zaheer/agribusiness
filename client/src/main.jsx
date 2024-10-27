@@ -16,6 +16,13 @@ import InitialPage from './pages/InitialPage.jsx'
 import RegisterPage from './pages/RegisterPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 import Settings from './pages/Settings.jsx'
+import AddProduct from './components/AddProduct.jsx'
+import DeleteProduct from './components/DeleteProduct.jsx'
+import UpdateProduct from './components/UpdateProduct.jsx'
+// import ChangePassword from './components/ChangePassword.jsx'
+// import ChangeUsername from './components/ChangeUsername.jsx'
+import SettingsNav from './components/SettingsNav.jsx'
+import MessagePage from './pages/MessagePage.jsx'
 
 const router = createBrowserRouter([
     {
@@ -52,13 +59,45 @@ const router = createBrowserRouter([
                 element: <Profile />
             },
             {
-                path: "/messages",
-                element: <Messages />
+                path: "/messages/",
+                element: <MessagePage />,
+                children: [
+                    {
+                        path: "/messages/:id",
+                        element: <Messages />
+                    }
+                ]
             },
             {
                 path: "/settings",
-                element: <Settings />
-            }
+                element: <Settings />,
+                children: [
+                    {
+                        path: "/settings",
+                        element: <SettingsNav />
+                    },{
+                        path: "/settings/add-product",
+                        element: <AddProduct />
+                    },
+                    {
+                        path: "/settings/delete-product",
+                        element: <DeleteProduct />
+                    },
+                    {
+                        path: "/settings/update-product",
+                        element: <UpdateProduct />
+                    },
+                    // {
+                    //     path: "/settings/change-password",
+                    //     element: <ChangePassword />
+                    // },
+                    // {
+                    //     path: "/settings/change-username",
+                    //     element: <ChangeUsername />
+                    // },
+                ]
+            },
+            
         ]
     }
     // {

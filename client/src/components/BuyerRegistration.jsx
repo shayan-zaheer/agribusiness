@@ -1,16 +1,9 @@
-import { useState } from "react";
 import { Form, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-function BuyerRegistration() {
+function BuyerRegistration({cities, selectedCity, setSelectedCity}) {
 	const navigate = useNavigate();
-    const [profilePicture, setProfilePicture] = useState("");
-
-    const handleFileChange = async (event) => {
-        const picture = await converttobase64(event.target.files[0]);
-        setProfilePicture(picture);
-    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -20,7 +13,8 @@ function BuyerRegistration() {
             name,
             username,
             password,
-            mobile
+            mobile,
+            city
         } = Object.fromEntries(formData.entries());
 		const role = new URLSearchParams(window.location.search).get("user");
 
@@ -32,6 +26,7 @@ function BuyerRegistration() {
 					username,
 					password,
 					mobile,
+                    city,
 					role
 				}
             );
@@ -115,6 +110,26 @@ function BuyerRegistration() {
                         className="w-full rounded border border-gray-400 py-2 px-3"
                     ></input>
                 </div>
+
+                <div className="flex flex-col w-3/4">
+            <label htmlFor="city" className="font-Poppins font-bold text-left mb-2">
+                Select City
+            </label>
+            <select
+                name="city"
+                value={selectedCity}
+                onChange={(event) => setSelectedCity(event.target.value)}
+                required
+                className="w-full rounded border border-gray-400 py-2 px-3"
+            >
+                <option value="">Select a city</option>
+                {cities.map((city, index) => (
+                    <option key={index} value={city}>
+                        {city}
+                    </option>
+                ))}
+            </select>
+        </div>
 
                 <button
                     type="submit"

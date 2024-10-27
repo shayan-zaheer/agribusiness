@@ -27,9 +27,9 @@ const userSchema = new mongoose.Schema({
     },
     farmName: {
         type: String,
-        required: function () {
-            return this.role === "seller";
-        },
+        // required: function () {
+        //     return this.role === "seller";
+        // },
     },
     farmLocation: {
         type: String,
@@ -62,6 +62,10 @@ const userSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
+    city: {
+        type: String,
+        required: true
+    }
 });
 
 userSchema.pre("save", async function (next) {
