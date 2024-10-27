@@ -59,12 +59,14 @@ const router = createBrowserRouter([
                 element: <Profile />
             },
             {
-                path: "/messages",
-                element: <MessagePage />
-            },
-            {
-                path: "/messages/:id",
-                element: <Messages />
+                path: "/messages/",
+                element: <MessagePage />,
+                children: [
+                    {
+                        path: "/messages/:id",
+                        element: <Messages />
+                    }
+                ]
             },
             {
                 path: "/settings",
