@@ -15,7 +15,6 @@ function Messages() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // Always call hooks, even if no ID is present
     useEffect(() => {
         if (!id) return;
         
