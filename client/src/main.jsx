@@ -23,6 +23,9 @@ import UpdateProduct from './components/UpdateProduct.jsx'
 // import ChangeUsername from './components/ChangeUsername.jsx'
 import SettingsNav from './components/SettingsNav.jsx'
 import MessagePage from './pages/MessagePage.jsx'
+import ChangeUsername from './components/ChangeUsername.jsx'
+import ChangePassword from './components/ChangePassword.jsx'
+import ProductPage from './pages/ProductPage.jsx'
 
 const router = createBrowserRouter([
     {
@@ -53,6 +56,10 @@ const router = createBrowserRouter([
             {
                 path: "/products",
                 element: <Products />
+            },
+            {
+                path: "/products/product/:productId",
+                element: <ProductPage />
             },
             {
                 path: "/profile",
@@ -87,6 +94,14 @@ const router = createBrowserRouter([
                         path: "/settings/update-product",
                         element: <UpdateProduct />
                     },
+                    {
+                        path: "/settings/change-username",
+                        element: <ChangeUsername />
+                    },
+                    {
+                        path: "/settings/change-password",
+                        element: <ChangePassword />
+                    }
                     // {
                     //     path: "/settings/change-password",
                     //     element: <ChangePassword />

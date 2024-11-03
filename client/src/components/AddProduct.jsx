@@ -57,7 +57,7 @@ function AddProduct() {
             {role === "seller" && (
                 <div className="p-8 bg-white rounded-lg shadow-md">
                 <h1 className="text-2xl font-bold mb-6">Add Product</h1>
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit} enctype="multipart/form-data">
                     <input
                         type="text"
                         name="name"

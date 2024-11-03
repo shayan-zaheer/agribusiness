@@ -106,13 +106,14 @@ function Messages() {
 
     return (
         <div className="flex-1 flex flex-col">
-            <div className="flex items-center justify-center w-full h-14 bg-slate-300">
-                <h2 className="font-bold text-2xl">{loading ? "Loading..." : receiverName}</h2>
+            <div className="flex items-center justify-center w-full h-14 bg-slate-600 text-white">
+                <h2 className="font-bold text-2xl">{loading ? "Loading..." : receiverName || "User"}</h2>
             </div>
-
-            <div className="flex-1 overflow-y-auto p-4">
-                {error && <div className="text-red-500">{error}</div>}
-                {messages && messages.map((msg, index) => (
+            <div className="flex-1 p-4 bg-gray-700 overflow-y-auto space-y-4">
+                {messages.length === 0 ? (
+                    <p className="text-center text-gray-300">No messages yet. Say hello!</p>
+                ) :
+                messages && messages.map((msg, index) => (
                     <Message key={msg._id || index} text={msg.text} isSender={msg.sender === currentUserId} />
                 ))}
             </div>
