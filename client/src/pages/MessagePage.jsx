@@ -43,12 +43,13 @@ function MessagePage() {
     return (
         <div className="flex h-screen bg-gray-100">
             <div className="w-1/4 bg-white border-r border-gray-300">
-                <div className="flex items-center justify-center h-14 bg-slate-300">
+                <div className="flex items-center justify-center h-14 bg-green-500">
                     <h2 className="font-bold text-2xl">Contacts</h2>
                 </div>
                 <div className="p-4 overflow-y-auto">
                     {loading && <div>Loading...</div>}
                     {error && <div className="text-red-500">{error}</div>}
+                    {!loading && contacts.length === 0 && <h2>No contacts yet!</h2>}
                     {!loading && contacts.map(contact => (
                         <Link
                             to={`/messages/${contact?._id}`} 
@@ -67,3 +68,4 @@ function MessagePage() {
 }
 
 export default MessagePage;
+

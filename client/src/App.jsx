@@ -44,7 +44,7 @@
 
 // export default App;
 
-import Header from "./components/Header";
+import Header from "./components/HeaderBuyer";
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { Outlet } from "react-router-dom";
@@ -87,3 +87,7 @@ function App() {
 }
 
 export default App;
+
+
+
+
