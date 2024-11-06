@@ -40,15 +40,12 @@ function Payment() {
                 </p>
             </div>
             <div className="flex flex-col items-end">
-                <img className="w-32 h-32 mb-2 object-cover rounded-md shadow-sm" src="src\assets\7358653-removebg-preview.png" alt= "imageproduct" />
-                <div className="flex gap-2 ">
-                  
-                    
                         <button  className="bg-green-600 text-white py-1 px-2 rounded-md hover:bg-green-700 transition-colors duration-200">
                             <strong> Contact Seller </strong>
                         </button>
                 
-                </div>
+                    <img className="w-32 h-32 mb-2 object-cover rounded-md shadow-sm" src="src\assets\7358653-removebg-preview.png" alt= "imageproduct" />   
+            
             </div>
            
         </div>
