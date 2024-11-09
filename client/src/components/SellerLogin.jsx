@@ -113,7 +113,7 @@ function SellerLogin() {
       const data = result.data;
       if (data.status === "success") {
         localStorage.setItem("token", data.token);
-        navigate("/profile");
+        navigate("/orders");
       } else {
         console.log(data);
       }

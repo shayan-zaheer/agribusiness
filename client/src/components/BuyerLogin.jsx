@@ -29,7 +29,7 @@ function BuyerLogin() {
             
             if (data.status === "success") {
 				localStorage.setItem("token", data.token);
-                navigate("/profile");
+                navigate("/products");
             } else {
                 console.log(data);
             }

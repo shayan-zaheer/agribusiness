@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Order = () => {
+const OrdersPage = () => {
   const [status, setStatus] = useState('PENDING');
 
   const handleStatusChange = (event) => {
@@ -35,4 +35,4 @@ const Order = () => {
   );
 };
 
-export default Order;
+export default OrdersPage;
