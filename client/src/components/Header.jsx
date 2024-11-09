@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { LuLanguages } from "react-icons/lu";
-import { CgProfile } from "react-icons/cg";
-import { CiShoppingCart } from "react-icons/ci";
+import { LuBold, LuLanguages } from "react-icons/lu";
+import { CgProfile, CgShoppingCart } from "react-icons/cg";
+import { CiSearch, CiShoppingCart } from "react-icons/ci";
 import { useTranslation } from "react-i18next";
 import { LuMessageCircle, LuSettings } from "react-icons/lu";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useDispatch } from "react-redux";
 import { userActions } from "../store/userSlice";
+import { useSelector } from "react-redux";
 import axios from "axios";
 
 function Header() {
@@ -17,6 +18,7 @@ function Header() {
 	const [username, setUsername] = useState("");
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
 	const dispatch = useDispatch();
+	const {role} = useSelector(store => store.user);
 
 	async function logout() {
 		try {
@@ -55,11 +57,11 @@ function Header() {
 	}
 
 	return (
-		<header className="bg-gray-800 shadow-md">
+		<header className=" bg-green-800 shadow-md">
 			<div className="container mx-auto flex justify-between items-center p-4">
 				<img
-					src="./nav-icon.png"
-					className="w-10 h-10"
+					src="./logo.png"
+					className="w-10 h-10 rounded-full"
 					alt="Logo"
 				/>
 
@@ -70,18 +72,29 @@ function Header() {
 				</div>
 
 				<nav className="hidden lg:flex space-x-4 items-center">
-					<Link to="/profile">
+					{role === "buyer" && (
+						<Link to="/viewcart">
 						<SideItem
-							text={t("profile")}
-							active={location.pathname === "/profile"}
-							icon={<CgProfile />}
+							text={t("View Cart")}
+							active={location.pathname === "/viewcart"}
+							icon={<CgShoppingCart />}
 						/>
 					</Link>
+					)}
+					{role === "seller" && (
+						<Link to="/orders">
+						<SideItem
+							text={t("orders")}
+							active={location.pathname === "/orders"}
+							icon={<CgShoppingCart />}
+						/>
+					</Link>
+					)}
 					<Link to="/products">
 						<SideItem
 							active={location.pathname === "/products"}
 							text={t("products")}
-							icon={<CiShoppingCart />}
+							icon={<CiSearch size={24} />}
 						/>
 					</Link>
 					<Link to="/settings">
@@ -154,9 +167,9 @@ function Header() {
 							</div>
 							<button
 								onClick={() => { logout(); setIsMenuOpen(false); }}
-								className="text-red-400 p-2"
+								className="text-red-400 font-semibold p-2 "
 							>
-								{t("logout")}
+								{t("")}
 							</button>
 						</div>
 					</nav>
@@ -170,7 +183,7 @@ function SideItem({ text, icon, active, onClick }) {
 	return (
 		<div
 			onClick={onClick}
-			className={`flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-all ${active ? "bg-green-50 text-black" : "hover:bg-green-100 hover:text-black text-white"
+			className={`flex items-center py-2 px-3 my-1 font-medium rounded-md cursor-pointer transition-all ${active ? "bg-green-500 text-black" : "hover:bg-green-100 hover:text-black text-white"
 				}`}
 		>
 			{icon}

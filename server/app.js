@@ -9,6 +9,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const {server} = require("./socket/index");
 const cookieParser = require('cookie-parser');
+const morgan = require("morgan");
 
 process.on("unhandledRejection", (error)=>{
     console.log(error)
@@ -24,6 +25,8 @@ process.on("uncaughtException", (err) =>{
 mongoose.connect(process.env.MONGO_URL).then((conObj)=>{
     console.log("DB Connection Successful!");
 });
+
+app.use(morgan("dev"));
 
 const allowedOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173']
 
