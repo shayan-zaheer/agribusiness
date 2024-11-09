@@ -3,12 +3,10 @@ import { FaBox, FaEdit, FaTrash, FaUserEdit, FaLock } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 function Settings() {
-    const {role} = useSelector(state => state.user);
+    const {role} = useSelector(store => store.user);
 
-    console.log(role);
     return (
         <div className="min-h-screen bg-gray-300 flex">
-
             <aside className="w-[18%] bg-green-600 p-8 flex flex-col space-y-6">
                 <h2 className="text-2xl text-white font-semibold">Settings</h2>
                 <nav className="space-y-4">

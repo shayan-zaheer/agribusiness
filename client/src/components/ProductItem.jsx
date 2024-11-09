@@ -37,18 +37,24 @@ function ProductItem({ product }) {
                 />
                 {role === "buyer" && (
                     <div className="flex gap-2">
-                        <Link
-                            to={`/products/${product._id}`}
-                            className="bg-blue-600 text-white py-1 px-2 rounded-md hover:bg-blue-700 transition-colors duration-200"
-                        >
+                        <button
+                            className="bg-blue-600 text-white py-1 px-2 rounded-md hover:bg-blue-700 transition-colors duration-200">
+                            
                             <strong>{t("Add To Cart")}</strong>
-                        </Link>
+                        </button>
 
                         <Link
                             to={`/messages/${product?.seller?._id}`}
                             className="bg-green-600 text-white py-1 px-2 rounded-md hover:bg-green-700 transition-colors duration-200"
                         >
                             <strong>{t("Contact Seller")}</strong>
+                        </Link>
+
+                        <Link
+                            to={`/products/product/${product?._id}`}
+                            className="bg-green-500 text-white py-1 px-2 rounded-md hover:bg-green-900 transition-colors duration-200"
+                        >
+                            <strong>{t("View Product")}</strong>
                         </Link>
                     </div>
                 )}

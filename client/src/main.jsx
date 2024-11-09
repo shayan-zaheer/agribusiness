@@ -23,6 +23,8 @@ import ChangeUsername from './components/ChangeUsername.jsx'
 import SettingsNav from './components/SettingsNav.jsx'
 import MessagePage from './pages/MessagePage.jsx'
 import OrdersPage from './pages/OrdersPage.jsx'
+import Payment from './components/Payment.jsx'
+import Checkout from './components/Checkout.jsx'
 
 const router = createBrowserRouter([
     {
@@ -65,6 +67,14 @@ const router = createBrowserRouter([
             {
                 path: "/orders",
                 element: <OrdersPage />
+            },
+            {
+                path: "/products/product/:productId",
+                element: <Payment />
+            },
+            {
+                path: "/products/product/:productId/checkout",
+                element: <Checkout />
             },
             {
                 path: "/settings",

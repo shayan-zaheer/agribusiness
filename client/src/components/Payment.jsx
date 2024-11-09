@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Payment() {
     const [selectedPaymentMethod, setSelectedPaymentMethod] = useState("");
@@ -66,35 +67,37 @@ function Payment() {
                     />
                 </div>
             </div>
-            <div className=" rounded-lg shadow-md p-4 m-5 hover:shadow-lg transition-shadow duration-200 bg-slate-200">
-                <label htmlFor="" className="font-extrabold text-3xl ">
-                    {" "}
-                    Pay Via
-                </label>
+            <Link to="checkout">
+                <div className=" rounded-lg shadow-md p-4 m-5 hover:shadow-lg transition-shadow duration-200 bg-slate-200">
+                    <label htmlFor="" className="font-extrabold text-3xl ">
+                        {" "}
+                        Pay Via
+                    </label>
 
-                <div className="flex gap-8 mt-9 ml-5">
-                    <img
-                        src="src/assets/Easypaisa-logo.png"
-                        alt="Easypaisa Logo"
-                        onClick={() => handleSelectPayment("easypaisa")}
-                        className={`w-24 h-12 object-contain cursor-pointer transition-transform duration-200 hover:scale-110 ${
-                            selectedPaymentMethod === "easypaisa"
-                                ? "border-2 border-blue-500 rounded-lg"
-                                : ""
-                        }`}
-                    />
-                    <img
-                        src="src/assets/Jazzcash-logo.png"
-                        alt="Jazzcash Logo"
-                        onClick={() => handleSelectPayment("jazzcash")}
-                        className={`w-24 h-12 object-contain cursor-pointer transition-transform duration-200 hover:scale-110 ${
-                            selectedPaymentMethod === "jazzcash"
-                                ? "border-2 border-blue-500 rounded-lg"
-                                : ""
-                        }`}
-                    />
+                    <div className="flex gap-8 mt-9 ml-5">
+                        <img
+                            src="src/assets/Easypaisa-logo.png"
+                            alt="Easypaisa Logo"
+                            onClick={() => handleSelectPayment("easypaisa")}
+                            className={`w-24 h-12 object-contain cursor-pointer transition-transform duration-200 hover:scale-110 ${
+                                selectedPaymentMethod === "easypaisa"
+                                    ? "border-2 border-blue-500 rounded-lg"
+                                    : ""
+                            }`}
+                        />
+                        <img
+                            src="src/assets/Jazzcash-logo.png"
+                            alt="Jazzcash Logo"
+                            onClick={() => handleSelectPayment("jazzcash")}
+                            className={`w-24 h-12 object-contain cursor-pointer transition-transform duration-200 hover:scale-110 ${
+                                selectedPaymentMethod === "jazzcash"
+                                    ? "border-2 border-blue-500 rounded-lg"
+                                    : ""
+                            }`}
+                        />
+                    </div>
                 </div>
-            </div>
+            </Link>
         </div>
     );
 }
