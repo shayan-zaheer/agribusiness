@@ -6,7 +6,7 @@ function SettingsNav() {
 
     return (
         <>
-            <h1 className="text-4xl font-bold text-green-600 mb-8">
+            <h1 className="text-4xl font-bold text-black mb-8">
                 Manage Your Settings
             </h1>
 
@@ -18,7 +18,7 @@ function SettingsNav() {
                     className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
                 >
                     <div className="flex items-center justify-center bg-gray-200 rounded-full w-12 h-12 mb-4">
-                        <FaBox className="text-green-500 text-2xl" />
+                        <FaBox className="text-gray-700 text-2xl" />
                     </div>
                     <h2 className="text-xl font-semibold text-gray-800">
                         Add Product
@@ -33,7 +33,7 @@ function SettingsNav() {
                     className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
                 >
                     <div className="flex items-center justify-center bg-gray-200 rounded-full w-12 h-12 mb-4">
-                        <FaEdit className="text-green-500 text-2xl" />
+                        <FaEdit className="text-gray-700 text-2xl" />
                     </div>
                     <h2 className="text-xl font-semibold text-gray-800">
                         Update Product
@@ -48,7 +48,7 @@ function SettingsNav() {
                     className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
                 >
                     <div className="flex items-center justify-center bg-gray-200 rounded-full w-12 h-12 mb-4">
-                        <FaTrash className="text-green-500 text-2xl" />
+                        <FaTrash className="text-gray-700 text-2xl" />
                     </div>
                     <h2 className="text-xl font-semibold text-gray-800">
                         Delete Product
@@ -66,7 +66,7 @@ function SettingsNav() {
                     className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
                 >
                     <div className="flex items-center justify-center bg-gray-200 rounded-full w-12 h-12 mb-4">
-                        <FaUserEdit className="text-green-500 text-2xl" />
+                        <FaUserEdit className="text-gray-700 text-2xl" />
                     </div>
                     <h2 className="text-xl font-semibold text-gray-800">
                         Change Username
@@ -78,10 +78,10 @@ function SettingsNav() {
 
                 <Link
                     to="/settings/change-password"
-                    className="bg-white p-6 rounded-lg shadow-2xl hover:shadow-xl transition-shadow"
+                    className="bg-white p-6 rounded-lg shadow-md hover:shadow-xl transition-shadow"
                 >
                     <div className="flex items-center justify-center bg-gray-200 rounded-full w-12 h-12 mb-4">
-                        <FaLock className="text-green-500 text-2xl" />
+                        <FaLock className="text-gray-700 text-2xl" />
                     </div>
                     <h2 className="text-xl font-semibold text-gray-800">
                         Change Password

@@ -20,6 +20,8 @@ function FetchProducts() {
                     response = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/products/`, { signal, withCredentials: true });
                 }
         
+                console.log("Fetched Products Response:", response.data); // Log the response
+        
                 dispatch(productActions.setProducts(response?.data?.data?.products || []));
             } catch (err) {
                 console.error(err);
