@@ -1,10 +1,35 @@
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 function ProductItem({ product }) {
     const { t } = useTranslation();
-    const { role } = useSelector((store) => store.user);
+    const { _id: id, role } = useSelector((store) => store.user);
+
+    const handleAddToCart = async (product) => {
+        try {
+            if(id){
+                const response = await axios.post(
+                    "http://localhost:8000/cart/add-to-cart",
+                    {
+                        userId: id,
+                        productId: product._id,
+                        quantity: 1,
+                    },
+                    {
+                       withCredentials: true
+                    }
+                );
+
+                console.log(response);
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
 
     return (
         <div className="flex bg-[rgb(167,217,167)] rounded-lg shadow-md p-4 m-5 hover:shadow-lg transition-shadow duration-200">
@@ -38,7 +63,9 @@ function ProductItem({ product }) {
                 {role === "buyer" && (
                     <div className="flex gap-2">
                         <button
-                            className="bg-blue-600 text-white py-1 px-2 rounded-md hover:bg-blue-700 transition-colors duration-200">
+                            className="bg-blue-600 text-white py-1 px-2 rounded-md hover:bg-blue-700 transition-colors duration-200"
+                            onClick={() => handleAddToCart(product)}
+                            >
                             
                             <strong>{t("Add To Cart")}</strong>
                         </button>
@@ -48,13 +75,6 @@ function ProductItem({ product }) {
                             className="bg-green-600 text-white py-1 px-2 rounded-md hover:bg-green-700 transition-colors duration-200"
                         >
                             <strong>{t("Contact Seller")}</strong>
-                        </Link>
-
-                        <Link
-                            to={`/products/product/${product?._id}`}
-                            className="bg-green-500 text-white py-1 px-2 rounded-md hover:bg-green-900 transition-colors duration-200"
-                        >
-                            <strong>{t("View Product")}</strong>
                         </Link>
                     </div>
                 )}

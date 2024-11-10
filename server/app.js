@@ -4,6 +4,7 @@ const authRoutes = require("./routes/authRoutes");
 const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
 const conversationRoutes = require('./routes/conversationRoutes');
+const cartRoutes = require('./routes/cartRoutes');
 const {app} = require("./socket/index");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -43,6 +44,7 @@ app.use("/auth", authRoutes);
 app.use("/users", userRoutes);
 app.use("/products", productRoutes);
 app.use('/api', conversationRoutes);
+app.use("/cart", cartRoutes);
 
 const PORT = process.env.PORT || 8000;
 

@@ -25,6 +25,7 @@ import MessagePage from './pages/MessagePage.jsx'
 import OrdersPage from './pages/OrdersPage.jsx'
 import Payment from './components/Payment.jsx'
 import Checkout from './components/Checkout.jsx'
+import ViewCart from './components/ViewCart.jsx'
 
 const router = createBrowserRouter([
     {
@@ -69,11 +70,15 @@ const router = createBrowserRouter([
                 element: <OrdersPage />
             },
             {
-                path: "/products/product/:productId",
+                path: "/viewcart",
+                element: <ViewCart />
+            },
+            {
+                path: "/checkout/payment",
                 element: <Payment />
             },
             {
-                path: "/products/product/:productId/checkout",
+                path: "/checkout",
                 element: <Checkout />
             },
             {
@@ -83,7 +88,8 @@ const router = createBrowserRouter([
                     {
                         path: "/settings",
                         element: <SettingsNav />
-                    },{
+                    },
+                    {
                         path: "/settings/add-product",
                         element: <AddProduct />
                     },
