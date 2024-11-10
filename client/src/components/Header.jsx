@@ -196,12 +196,6 @@ function Header() {
                                 }
                                 icon={<LuLanguages />}
                             />
-
-                            <div className="flex items-center p-4">
-                                <span className="ml-2 text-white">
-                                    {username}
-                                </span>
-                            </div>
                             <button
                                 onClick={() => {
                                     logout();
@@ -209,7 +203,7 @@ function Header() {
                                 }}
                                 className="text-red-400 font-semibold p-2 "
                             >
-                                {t("")}
+                                {t("logout")}
                             </button>
                         </div>
                     </nav>
