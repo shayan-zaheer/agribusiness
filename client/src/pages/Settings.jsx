@@ -13,7 +13,6 @@ function Settings() {
 
     return (
         <div className="min-h-screen bg-gray-300 flex flex-col md:flex-row">
-            {/* Sidebar */}
             <aside
                 className={`${
                     isSidebarOpen ? "w-[250px]" : "hidden"
@@ -57,14 +56,11 @@ function Settings() {
                     </Link>
                 </nav>
             </aside>
-
-            {/* Main Content */}
             <main
                 className={`flex-1 p-6 md:p-10 transition-all duration-300 ease-in-out ${
                     isSidebarOpen ? "ml-[250px]" : "ml-0"
                 }`}
             >
-                {/* Hamburger Button (Only on mobile) */}
                 <div className="md:hidden mb-4">
                     <button
                         onClick={toggleSidebar}
@@ -73,8 +69,6 @@ function Settings() {
                         <FaBars />
                     </button>
                 </div>
-
-                {/* Render Outlet (child routes) */}
                 <Outlet context={[role]} />
             </main>
         </div>
