@@ -1,64 +1,62 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useSelector } from "react-redux";
 
 function ChangeUsername() {
+    const { _id: userId } = useSelector(store => store.user);
+    const [newUsername, setNewUsername] = useState("");
     const [loading, setLoading] = useState(false);
-    const [newUsername, setNewUsername] = useState('');
-    const [message, setMessage] = useState(''); // State for displaying messages
+    const [error, setError] = useState("");
+    const [success, setSuccess] = useState("");
 
-    const handleChange = async (event) => {
-        event.preventDefault();
+    const handleChangeUsername = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        setError("");
+        setSuccess("");
 
         try {
-            setLoading(true);
-            const result = await axios.put(
-                `${import.meta.env.VITE_BACKEND_URL}/users/change-username`,
-                { username: newUsername }, // Sending the new username to the backend
-                { withCredentials: true }) // Ensure cookies (e.g., JWT token) are sent with the request
-            setLoading(false);
-            setMessage(result.data.message || "Username changed successfully!"); // Display success message
+            const response = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/users/change-username`, {
+                userId,
+                newUsername
+            });
+            setSuccess(response.data.message);
+            setNewUsername("");
+            toast.success("Username updated successfully!");
         } catch (error) {
+            console.error("Error changing username:", error);
+            setError("Failed to change username. Please try again.");
+            toast.error("Failed to change username");
+        } finally {
             setLoading(false);
-            setMessage("Failed to change username. Please try again."); // Display error message
-            console.error(error);
         }
     };
 
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-            <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
-                <h2 className="text-2xl font-bold mb-6 text-gray-700 text-center">Change Username</h2>
-                <form onSubmit={handleChange} className="space-y-6">
-                    <div className="flex flex-col">
-                        <label htmlFor="newUsername" className="mb-2 text-gray-600">New Username</label>
-                        <input
-                            type="text"
-                            id="newUsername"
-                            name="newUsername"
-                            value={newUsername}
-                            onChange={(e) => setNewUsername(e.target.value)}
-                            className="p-2 border border-gray-300 rounded-md"
-                            required
-                        />
-                    </div>
-
-                    <button
-                        type="submit"
-                        className="w-full py-2 px-4 bg-blue-600 text-white rounded-md shadow-sm"
-                    >
-                        {loading ? "Updating Username..." : "Change Username"}
-                    </button>
-                </form>
-
-                {message && (
-                    <div className={`mt-4 text-center ${message.includes("Failed") ? "text-red-500" : "text-green-500"}`}>
-                        {message}
-                    </div>
-                )}
-            </div>
+        <div className="p-8 bg-white rounded-lg shadow-md">
+            <h1 className="text-2xl font-bold mb-6">Change Username</h1>
+            <form onSubmit={handleChangeUsername}>
+                {error && <p className="text-red-500 mb-4">{error}</p>}
+                {success && <p className="text-green-500 mb-4">{success}</p>}
+                <input
+                    type="text"
+                    value={newUsername}
+                    onChange={(e) => setNewUsername(e.target.value)}
+                    placeholder="New Username"
+                    className="block w-full p-3 border border-gray-300 rounded mb-4"
+                    required
+                />
+                <button 
+                    type="submit" 
+                    className="bg-green-600 text-white py-2 px-4 rounded" 
+                    disabled={loading}
+                >
+                    {loading ? "Updating..." : "Change Username"}
+                </button>
+            </form>
         </div>
     );
 }
 
 export default ChangeUsername;
-
