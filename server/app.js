@@ -36,6 +36,7 @@ app.use(cors({
         'https://agribusiness-production.up.railway.app'
       ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type'],
     credentials: true,
 }));
 

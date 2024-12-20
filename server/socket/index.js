@@ -16,7 +16,8 @@ const io = new Server(server, {
             'https://localhost:5173',
             'https://agribusiness-production.up.railway.app'
           ],
-        credentials: true,
+          allowedHeaders: ['Content-Type'],
+    credentials: true
     },
 });
 
