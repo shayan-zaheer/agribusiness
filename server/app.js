@@ -29,7 +29,7 @@ mongoose.connect(process.env.MONGO_URL).then((conObj)=>{
 
 app.use(morgan("dev"));
 
-const allowedOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173', "agribusiness-swart.vercel.app"]
+const allowedOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173', "agribusiness-production.up.railway.app"]
 
 app.use(cors({
     origin: allowedOrigins,
