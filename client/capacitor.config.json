@@ -1,0 +1,9 @@
+{
+  "appId": "com.agribusiness.app",
+  "appName": "agribusiness",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "android": {
+    "path": "android"
+  }
+}

@@ -20,7 +20,7 @@ function Products() {
 
             <div>
                 <SearchBar />
-                {products.length > 0 ? (
+                {products && products.length > 0 ? (
                     products.map((product) => (
                         <ProductItem key={product._id} product={product} />
                     ))
