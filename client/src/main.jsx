@@ -8,7 +8,6 @@ import "./utils/i18n.js";
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import 'react-toastify/dist/ReactToastify.css';
 import Products from './pages/Products.jsx'
-import Profile from './pages/Profile.jsx'
 import Messages from './pages/Messages.jsx'
 import WelcomeSection from './components/WelcomeSection.jsx'
 import UserSelection from './components/UserSelection.jsx'
@@ -19,10 +18,14 @@ import Settings from './pages/Settings.jsx'
 import AddProduct from './components/AddProduct.jsx'
 import DeleteProduct from './components/DeleteProduct.jsx'
 import UpdateProduct from './components/UpdateProduct.jsx'
-// import ChangePassword from './components/ChangePassword.jsx'
-// import ChangeUsername from './components/ChangeUsername.jsx'
+import ChangePassword from './components/ChangePassword.jsx'
+import ChangeUsername from './components/ChangeUsername.jsx'
 import SettingsNav from './components/SettingsNav.jsx'
 import MessagePage from './pages/MessagePage.jsx'
+import OrdersPage from './pages/OrdersPage.jsx'
+import Payment from './components/Payment.jsx'
+import Checkout from './components/Checkout.jsx'
+import ViewCart from './components/ViewCart.jsx'
 
 const router = createBrowserRouter([
     {
@@ -55,18 +58,28 @@ const router = createBrowserRouter([
                 element: <Products />
             },
             {
-                path: "/profile",
-                element: <Profile />
+                path: "/messages",
+                element: <MessagePage />
             },
             {
-                path: "/messages/",
-                element: <MessagePage />,
-                children: [
-                    {
-                        path: "/messages/:id",
-                        element: <Messages />
-                    }
-                ]
+                path: "/messages/:id",
+                element: <Messages />
+            },
+            {
+                path: "/orders",
+                element: <OrdersPage />
+            },
+            {
+                path: "/viewcart",
+                element: <ViewCart />
+            },
+            {
+                path: "/checkout/payment",
+                element: <Payment />
+            },
+            {
+                path: "/checkout",
+                element: <Checkout />
             },
             {
                 path: "/settings",
@@ -75,7 +88,8 @@ const router = createBrowserRouter([
                     {
                         path: "/settings",
                         element: <SettingsNav />
-                    },{
+                    },
+                    {
                         path: "/settings/add-product",
                         element: <AddProduct />
                     },
@@ -87,31 +101,19 @@ const router = createBrowserRouter([
                         path: "/settings/update-product",
                         element: <UpdateProduct />
                     },
-                    // {
-                    //     path: "/settings/change-password",
-                    //     element: <ChangePassword />
-                    // },
-                    // {
-                    //     path: "/settings/change-username",
-                    //     element: <ChangeUsername />
-                    // },
+                    {
+                        path: "/settings/change-password",
+                        element: <ChangePassword />
+                    },
+                    {
+                        path: "/settings/change-username",
+                        element: <ChangeUsername />
+                    },
                 ]
             },
             
         ]
     }
-    // {
-    //     path: "/orders",
-    //     element: <App />
-    // },
-    // {
-    //     path: "/profile",
-    //     element: <App />
-    // },
-    // {
-    //     path: "/settings",
-    //     element: <App />
-    // }
 ]);
 
 createRoot(document.getElementById('root')).render(

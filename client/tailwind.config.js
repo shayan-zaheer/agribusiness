@@ -1,29 +1,41 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: [
-      "./index.html",
-      "./src/**/*.{js,ts,jsx,tsx}",
-    ],
-    theme: {
-      screens: {
-        'sm': { 'min': '250px', 'max': '650px' },
-        // => @media (min-width: 250px) and (max-width: 599px) { ... }
-        
-        'md': { 'min': '651px', 'max': '1023px' },
-        // => @media (min-width: 600px) and (max-width: 1023px) { ... }
-
-        'lg': { 'min': '1024px', 'max': '1279px' },
-        // => @media (min-width: 1024px) and (max-width: 1279px) { ... }
-
-        'xl': { 'min': '1280px', 'max': '1535px' },
-        // => @media (min-width: 1280px) and (max-width: 1535px) { ... }
-
-        '2xl': { 'min': '1536px' },
-        // => @media (min-width: 1536px) { ... }
-        
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      keyframes: {
+        fadeInRight: {
+          '0%': { opacity: '0', transform: 'translateX(50%)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        fadeIn: {
+          '0%': { opacity: '0' },
+          '100%': { opacity: '1' },
+        },
+        fadeInDown: {
+          '0%': { opacity: '0', transform: 'translateY(-10px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        scaleUp: {
+          '0%': { opacity: '0', transform: 'scale(0.95)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
+        },
+        bounceOnHover: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-5px)' },
+        },
       },
-      extend: {},
+      animation: {
+        fadeIn: 'fadeIn 1s ease-in-out forwards',
+        fadeInDown: 'fadeInDown 1s ease-out forwards',
+        scaleUp: 'scaleUp 1s ease-in-out forwards',
+        fadeInRight: 'fadeInRight 1.5s ease-in-out forwards',
+        bounceOnHover: 'bounceOnHover 0.3s ease-in-out',
+      },
     },
-    plugins: [],
-  }
-
+  },
+  plugins: [],
+};

@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">agribusiness</string>
+    <string name="title_activity_main">agribusiness</string>
+    <string name="package_name">com.agribusiness.app</string>
+    <string name="custom_url_scheme">com.agribusiness.app</string>
+</resources>

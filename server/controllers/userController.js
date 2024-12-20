@@ -48,3 +48,57 @@ exports.getUserById = asyncErrorHandler(async (request, response, next) => {
             user
         });
 });
+
+exports.changePassword = asyncErrorHandler(async (req, res, next) => {
+    const { userId,
+        oldPassword,
+        newPassword } = req.body;
+
+    if (!userId || !oldPassword || !newPassword) {
+        return next(new CustomError("Please provide user ID, current password, and new password", 400));
+    }
+
+    const user = await User.findById(userId).select("+password");
+    if (!user) {
+        return next(new CustomError("User not found", 404));
+    }
+
+    const isMatch = await user.comparePasswordInDB(oldPassword, user.password);
+    if (!isMatch) {
+        return next(new CustomError("Current password is incorrect", 400));
+    }
+
+    user.password = newPassword;
+    await user.save();
+
+    res.status(200).json({
+        status: "success",
+        message: "Password changed successfully"
+    });
+});
+
+exports.changeUsername = asyncErrorHandler(async (req, res, next) => {
+    const { userId, newUsername } = req.body;
+
+    if (!userId || !newUsername) {
+        return next(new CustomError("Please provide user ID and new username", 400));
+    }
+
+    const existingUser = await User.findOne({ username: newUsername });
+    if (existingUser) {
+        return next(new CustomError("Username already taken", 400));
+    }
+
+    const user = await User.findById(userId);
+    if (!user) {
+        return next(new CustomError("User not found", 404));
+    }
+
+    user.username = newUsername;
+    await user.save();
+
+    res.status(200).json({
+        status: "success",
+        message: "Username changed successfully"
+    });
+});
