@@ -29,10 +29,12 @@ mongoose.connect(process.env.MONGO_URL).then((conObj)=>{
 
 app.use(morgan("dev"));
 
-const allowedOrigins = ['http://localhost:5173', 'http://127.0.0.1:5173']
-
 app.use(cors({
-    origin: allowedOrigins,
+    origin: [
+        'http://localhost:5173',
+        'https://localhost:5173',
+        'https://agribusiness-production.up.railway.app'
+      ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true,
 }));
