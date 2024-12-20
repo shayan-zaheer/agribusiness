@@ -9,7 +9,7 @@ function App() {
     const [socketConnection, setSocketConnection] = useState(null);
 
     useEffect(() => {
-        const socket = io("http://localhost:8000", {
+        const socket = io("agribusiness-production.up.railway.app", {
             auth: {
                 token: localStorage.getItem("token"),
             },
