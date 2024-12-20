@@ -13,6 +13,8 @@ function App() {
             auth: {
                 token: localStorage.getItem("token"),
             },
+            transports: ['websocket'],
+            withCredentials: true,
         });
 
 		socket.on('connect', () => {
