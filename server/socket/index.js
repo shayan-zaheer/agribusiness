@@ -14,7 +14,8 @@ const io = new Server(server, {
         origin: [
             'http://localhost:5173',
             'https://localhost:5173',
-            'https://agribusiness-production.up.railway.app'
+            'https://agribusiness-production.up.railway.app',
+            "*"
           ],
           allowedHeaders: ['Content-Type'],
     credentials: true
