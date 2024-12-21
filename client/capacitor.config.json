@@ -1,6 +1,6 @@
 {
   "appId": "com.agribusiness.app",
-  "appName": "agribusiness",
+  "appName": "Agribusiness",
   "webDir": "dist",
   "bundledWebRuntime": false,
   "android": {
