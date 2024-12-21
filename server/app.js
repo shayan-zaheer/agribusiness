@@ -29,17 +29,21 @@ mongoose.connect(process.env.MONGO_URL).then((conObj)=>{
 
 app.use(morgan("dev"));
 
-app.use(cors({
+const corsOptions = {
     origin: [
-        'http://localhost:5173',
+        'http://localhost:5173', // Local development frontend
         'https://localhost:5173',
-        'https://agribusiness-production.up.railway.app',
-        "*"
-      ],
+        'https://agribusiness-production.up.railway.app', // Deployed frontend
+        'https://localhost', // Mobile app for debugging
+    ],
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
-}));
+}
+
+app.use(cors(corsOptions));
+
+app.options("*", cors(corsOptions));
 
 app.use(express.json());
 app.use(cookieParser());

@@ -14,10 +14,10 @@ const io = new Server(server, {
         origin: [
             'http://localhost:5173',
             'https://localhost:5173',
+            'https://localhost',
             'https://agribusiness-production.up.railway.app',
-            "*"
           ],
-          allowedHeaders: ['Content-Type'],
+          allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
     },
 });
